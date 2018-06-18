@@ -16,22 +16,22 @@
 /*
  * You can remove this if you are confident that your PHP version is sufficient.
  */
-if (version_compare(PHP_VERSION, '5.5.9') < 0) {
-    trigger_error('Your PHP version must be equal or higher than 5.5.9 to use CakePHP.', E_USER_ERROR);
+if (version_compare ( PHP_VERSION, '5.5.9' ) < 0) {
+	trigger_error ( 'Your PHP version must be equal or higher than 5.5.9 to use CakePHP.', E_USER_ERROR );
 }
 
 /*
- *  You can remove this if you are confident you have intl installed.
+ * You can remove this if you are confident you have intl installed.
  */
-if (!extension_loaded('intl')) {
-    trigger_error('You must enable the intl extension to use CakePHP.', E_USER_ERROR);
+if (! extension_loaded ( 'intl' )) {
+	trigger_error ( 'You must enable the intl extension to use CakePHP.', E_USER_ERROR );
 }
 
 /*
  * You can remove this if you are confident you have mbstring installed.
  */
-if (!extension_loaded('mbstring')) {
-    trigger_error('You must enable the mbstring extension to use CakePHP.', E_USER_ERROR);
+if (! extension_loaded ( 'mbstring' )) {
+	trigger_error ( 'You must enable the mbstring extension to use CakePHP.', E_USER_ERROR );
 }
 
 /*
@@ -75,10 +75,10 @@ use Cake\Utility\Security;
  * that changes from configuration that does not. This makes deployment simpler.
  */
 try {
-    Configure::config('default', new PhpConfig());
-    Configure::load('app', 'default', false);
-} catch (\Exception $e) {
-    exit($e->getMessage() . "\n");
+	Configure::config ( 'default', new PhpConfig () );
+	Configure::load ( 'app', 'default', false );
+} catch ( \Exception $e ) {
+	exit ( $e->getMessage () . "\n" );
 }
 
 /*
@@ -86,49 +86,49 @@ try {
  * You can use a file like app_local.php to provide local overrides to your
  * shared configuration.
  */
-//Configure::load('app_local', 'default');
+// Configure::load('app_local', 'default');
 
 /*
  * When debug = true the metadata cache should only last
  * for a short time.
  */
-if (Configure::read('debug')) {
-    Configure::write('Cache._cake_model_.duration', '+2 minutes');
-    Configure::write('Cache._cake_core_.duration', '+2 minutes');
+if (Configure::read ( 'debug' )) {
+	Configure::write ( 'Cache._cake_model_.duration', '+2 minutes' );
+	Configure::write ( 'Cache._cake_core_.duration', '+2 minutes' );
 }
 
 /*
  * Set server timezone to UTC. You can change it to another timezone of your
  * choice but using UTC makes time calculations / conversions easier.
  */
-date_default_timezone_set('UTC');
+date_default_timezone_set ( 'UTC' );
 
 /*
  * Configure the mbstring extension to use the correct encoding.
  */
-mb_internal_encoding(Configure::read('App.encoding'));
+mb_internal_encoding ( Configure::read ( 'App.encoding' ) );
 
 /*
  * Set the default locale. This controls how dates, number and currency is
  * formatted and sets the default language to use for translations.
  */
-ini_set('intl.default_locale', Configure::read('App.defaultLocale'));
+ini_set ( 'intl.default_locale', Configure::read ( 'App.defaultLocale' ) );
 
 /*
  * Register application error and exception handlers.
  */
 $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
-    (new ConsoleErrorHandler(Configure::read('Error')))->register();
+	(new ConsoleErrorHandler ( Configure::read ( 'Error' ) ))->register ();
 } else {
-    (new ErrorHandler(Configure::read('Error')))->register();
+	(new ErrorHandler ( Configure::read ( 'Error' ) ))->register ();
 }
 
 /*
  * Include the CLI bootstrap overrides.
  */
 if ($isCli) {
-    require __DIR__ . '/bootstrap_cli.php';
+	require __DIR__ . '/bootstrap_cli.php';
 }
 
 /*
@@ -137,46 +137,46 @@ if ($isCli) {
  *
  * If you define fullBaseUrl in your config file you can remove this.
  */
-if (!Configure::read('App.fullBaseUrl')) {
-    $s = null;
-    if (env('HTTPS')) {
-        $s = 's';
-    }
-
-    $httpHost = env('HTTP_HOST');
-    if (isset($httpHost)) {
-        Configure::write('App.fullBaseUrl', 'http' . $s . '://' . $httpHost);
-    }
-    unset($httpHost, $s);
+if (! Configure::read ( 'App.fullBaseUrl' )) {
+	$s = null;
+	if (env ( 'HTTPS' )) {
+		$s = 's';
+	}
+	
+	$httpHost = env ( 'HTTP_HOST' );
+	if (isset ( $httpHost )) {
+		Configure::write ( 'App.fullBaseUrl', 'http' . $s . '://' . $httpHost );
+	}
+	unset ( $httpHost, $s );
 }
 
-Cache::config(Configure::consume('Cache'));
-ConnectionManager::config(Configure::consume('Datasources'));
-Email::configTransport(Configure::consume('EmailTransport'));
-Email::config(Configure::consume('Email'));
-Log::config(Configure::consume('Log'));
-Security::salt(Configure::consume('Security.salt'));
+Cache::config ( Configure::consume ( 'Cache' ) );
+ConnectionManager::config ( Configure::consume ( 'Datasources' ) );
+Email::configTransport ( Configure::consume ( 'EmailTransport' ) );
+Email::config ( Configure::consume ( 'Email' ) );
+Log::config ( Configure::consume ( 'Log' ) );
+Security::salt ( Configure::consume ( 'Security.salt' ) );
 
 /*
  * The default crypto extension in 3.0 is OpenSSL.
  * If you are migrating from 2.x uncomment this code to
  * use a more compatible Mcrypt based implementation
  */
-//Security::engine(new \Cake\Utility\Crypto\Mcrypt());
+// Security::engine(new \Cake\Utility\Crypto\Mcrypt());
 
 /*
  * Setup detectors for mobile and tablet.
  */
-Request::addDetector('mobile', function ($request) {
-    $detector = new \Detection\MobileDetect();
-
-    return $detector->isMobile();
-});
-Request::addDetector('tablet', function ($request) {
-    $detector = new \Detection\MobileDetect();
-
-    return $detector->isTablet();
-});
+Request::addDetector ( 'mobile', function ($request) {
+	$detector = new \Detection\MobileDetect ();
+	
+	return $detector->isMobile ();
+} );
+Request::addDetector ( 'tablet', function ($request) {
+	$detector = new \Detection\MobileDetect ();
+	
+	return $detector->isTablet ();
+} );
 
 /*
  * Enable immutable time objects in the ORM.
@@ -186,24 +186,20 @@ Request::addDetector('tablet', function ($request) {
  * locale specific date formats. For details see
  * @link http://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
  */
-Type::build('time')
-    ->useImmutable();
-Type::build('date')
-    ->useImmutable();
-Type::build('datetime')
-    ->useImmutable();
-Type::build('timestamp')
-    ->useImmutable();
+Type::build ( 'time' )->useImmutable ();
+Type::build ( 'date' )->useImmutable ();
+Type::build ( 'datetime' )->useImmutable ();
+Type::build ( 'timestamp' )->useImmutable ();
 
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize
  * table, model, controller names or whatever other string is passed to the
  * inflection functions.
  */
-//Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
-//Inflector::rules('irregular', ['red' => 'redlings']);
-//Inflector::rules('uninflected', ['dontinflectme']);
-//Inflector::rules('transliteration', ['/å/' => 'aa']);
+// Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
+// Inflector::rules('irregular', ['red' => 'redlings']);
+// Inflector::rules('uninflected', ['dontinflectme']);
+// Inflector::rules('transliteration', ['/å/' => 'aa']);
 
 /*
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
@@ -219,6 +215,9 @@ Type::build('timestamp')
  * Only try to load DebugKit in development mode
  * Debug Kit should not be installed on a production system
  */
-if (Configure::read('debug')) {
-    Plugin::load('DebugKit', ['bootstrap' => true]);
+if (Configure::read ( 'debug' )) {
+	Plugin::load ( 'DebugKit', [ 
+			'bootstrap' => true 
+	] );
 }
+Plugin::load ( 'BootstrapUI' );
