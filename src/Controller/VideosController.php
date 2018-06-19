@@ -12,5 +12,11 @@ class VideosController extends AppController
 		
 		$this->set('keyword',$keyword);
 	}
-
+	
+	public function play()
+	{
+		$video_id = $_GET['videoId'];
+		
+		$this->set('video_id',$video_id);
+	}
 }

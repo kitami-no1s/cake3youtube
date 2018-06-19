@@ -1,4 +1,3 @@
-var related_videos=[];
 $(function() {
 	$(window).on('load', getKeyword);
 	
@@ -34,14 +33,15 @@ function search(keyword) {
 			if(data.items[i].id.videoId && 
 				data.items[i].id.kind=="youtube#video"){
 				//関連動画をリストに追加
-				related_videos = data.items[i];
 				$('#result table').append(
-						'<tr class="movie_box" id="' + data.items[i].id.videoId + '">' +
+						'<tr class="movie_box">' + 
 						'<td class="thum">' +
 						'<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>' +
 						'</td>' + '<td class="details">' +
-						'<a href="http://localhost/cake3youtube/videos/play?videoId=' +
-						data.items[i].id.videoId + '" target="_blank">' +data.items[i].snippet.title + '<br/>' +
+						'<a href="http://localhost/cake3youtube/videos/play?videoId='
+						+ data.items[i].id.videoId  +
+						'&keyword=' + keyword + '" target="_blank">'  + data.items[i].snippet.title + 
+						'</a><br/>' +
 						'<span class="description">'+ '' + '</span>' +
 						'</td>'+
 						'</tr>');
