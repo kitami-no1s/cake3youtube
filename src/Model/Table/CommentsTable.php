@@ -18,7 +18,13 @@ class CommentsTable extends Table
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
 		$this->belongsTo('videos',[
-				'foreignKey'=>'playlist_id',
+				'foreignKey'=>'video_id',
+				'joinType'=>'INNER'
+				
+		]);
+		$this->belongsTo('users',[
+				'foreignKey'=>'user_id',
+				'joinType'=>'INNER'
 		]);
 	}
 
@@ -31,15 +37,16 @@ class CommentsTable extends Table
 		
 		
 		$validator
-		->requirePresence('v_code','create')
-		->notEmpty('v_code');
+		->requirePresence('body','create')
+		->notEmpty('body');
 		
 		return $validator;
 	}
 
 	public function buildRules(RulesChecker $rules)
 	{
-		$rules->add($rules->existsIn(['playlist_id'],'Playlists'));
+		$rules->add($rules->existsIn(['video_id'],'Videos'));
+		$rules->add($rules->existsIn(['user_id'],'Users'));
 		return $rules;
 	}
 }
