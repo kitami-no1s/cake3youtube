@@ -1,18 +1,19 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-		<?=$this->Html->link("YouTube","/playslist/index",["class"=>"navbar-brand"]); ?>
+		<?=$this->Html->link("YouTube","/playlists/index",["class"=>"navbar-brand"]); ?>
 		</div>
-		<div class="collapse navbar-collapse">
-			<form>
-				<input type="text" id="keyword" value=" "/>
-				<input type="submit" value="検索" id="btn" disabled="disabled" />
-			</form>
-			<ul class="nav navbar-nav">
-				<li class="dropdown">
+			<?php
+				echo $this->Form->create("Videos",['type'=>'get','url'=>['action'=>'result']]);
+				echo $this->Form->input('keyword');
+				echo $this->Form->button("検索");
+				echo $this->Form->end();
+			?>
+			<ul id="">
+				<li>
 					<?= $this->Html->link("ログイン","/users/login"); ?>
 				</li>
-				<li class="dropdown">
+				<li>
 					<?=$this->Html->link("ユーザ登録","/users/register");?>
 				</li>
 			</ul>

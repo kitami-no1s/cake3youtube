@@ -4,11 +4,14 @@
 		<?= $this->Html->link("YoTube",["controller" => "Users"]
 		,["class"=>"navbar-brand"]); ?>
 		</div>
+				</div>
+			<?php
+				echo $this->Form->create("Videos",['type'=>'get','url'=>['action'=>'result']]);
+				echo $this->Form->input('keyword');
+				echo $this->Form->button("検索");
+				echo $this->Form->end();
+			?>
 		<div class="collapse navbar-collapse">
-			<form>
-				<input type="text" id="keyword" value=" "/>
-				<input type="submit" value="検索" id="btn" disabled="disabled" />
-			</form>
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
 					<?= $this->Html->link(?=$this->Html->link("マイリスト","/admin/index"); ?>
