@@ -6,6 +6,7 @@ USE cake3youtube;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
 	id int(11) NOT NULL AUTO_INCREMENT,
+	name varchar(255) NOT NULL,
 	email varchar(255) NOT NULL,
 	password varchar(255) NOT NULL,
 	modified datetime DEFAULT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE playlists(
 	id int(11) NOT NULL AUTO_INCREMENT,
 	title varchar(255) NOT NULL,
 	public int(11) NOT NULL, 
+	user_id int(11) NOT NULL,
 	modified datetime DEFAULT NULL,
 	created datetime DEFAULT NULL,
 	PRIMARY KEY (id)
