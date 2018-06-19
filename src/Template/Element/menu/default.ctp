@@ -4,7 +4,7 @@
 		<?=$this->Html->link("YouTube","/playlists/index",["class"=>"navbar-brand"]); ?>
 		</div>
 			<?php
-				echo $this->Form->create("Videos",['type'=>'get','url'=>['action'=>'result']]);
+				echo $this->Form->create("Videos",['type'=>'get','url'=>['controller'=>'Videos','action'=>'result']]);
 				echo $this->Form->input('keyword');
 				echo $this->Form->button("検索");
 				echo $this->Form->end();
