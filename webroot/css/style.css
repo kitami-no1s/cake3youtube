@@ -25,3 +25,17 @@ table{
 	float: left;
 	text-align: right;
 }
+#login-menu{
+	margin-top: 10px;
+	width: 150px;
+	float: left;
+	text-align: left;
+}
+#all-playlists{
+	width:500px;
+	float:left;
+}
+#my-playlists{
+	width:500px;
+	float:right;
+}

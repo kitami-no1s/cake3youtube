@@ -26,11 +26,13 @@ class UsersController extends AppController
 			if($this->Users->save($user)){
 				$this->MyAuth->setUser($user->toArray());
 				$this->Flash->success(__('ユーザ情報を更新しました'));
-				return $this->redirect(['action' => 'index']);
+				return $this->redirect(['controller'=>'Playlists','action' => 'index']);
 			}
 			$this->Flash->error(__('ユーザの情報の更新に失敗しました'));
 		}
 		unset($user["password"]);
 		$this->set(compact('user'));
 	}
+	
+	
 }
