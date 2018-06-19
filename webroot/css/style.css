@@ -12,9 +12,16 @@ body{
 
 .main .page-header{
 	margin-top: 0;
+	overflow: hidden;
 }
-.search{
-	
-	text-align:left;
-	
+table{
+	margin-top: 10px;
+	float: left;
+	width: 800px;
+}
+#start-menu{
+	margin-top: 10px;
+	width: 600px;
+	float: left;
+	text-align: right;
 }
