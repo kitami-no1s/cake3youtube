@@ -13,5 +13,16 @@ class PlaylistsController extends AppController
 		$playlists = $this->paginate($this->Playlists);
 		$this->set('playlists',$playlists);
 	}
+	public function view($playlist_id = null)
+	{
+		try{
+			$event = $this->Playlists->get($playlist_id,[
+					'contain' => ['Users'],
+			]);
+		} catch(\Exception $e){
+			$this->Flash->error(__('プレイリストが存在しません'));
+			return $this->redirect(['action' => 'index']);
+		}
+	}
 
 }

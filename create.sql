@@ -30,6 +30,7 @@ CREATE TABLE playlist_videos(
 	id int(11) NOT NULL AUTO_INCREMENT,
 	playlist_id int(11) NOT NULL,
 	v_code varchar(255) NOT NULL,
+	seq int(11) NOT NULL,
 	modified datetime DEFAULT NULL,
 	created datetime DEFAULT NULL,
 	PRIMARY KEY (id)
