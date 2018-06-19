@@ -5,6 +5,7 @@
 			<?php
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				echo $this->Form->create("Videos",['type'=>'get','url'=>['action'=>'result']]);
 				echo $this->Form->input('keyword',['style'=>'width: 300px']);
 =======
@@ -18,6 +19,11 @@
 				echo $this->Form->create("Videos",['type'=>'get','url'=>['action'=>'result']]);
 				echo $this->Form->input('keyword',['style'=>'width: 300px']);
 >>>>>>> sato
+>>>>>>> kitami
+=======
+
+				echo $this->Form->create("Videos",['type'=>'get','url'=>['controller'=>'Videos','action'=>'result']]);
+				echo $this->Form->input('keyword');
 >>>>>>> kitami
 				echo $this->Form->button("検索");
 				echo $this->Form->end();
