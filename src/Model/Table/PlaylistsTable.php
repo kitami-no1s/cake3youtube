@@ -17,10 +17,10 @@ class PlaylistsTable extends Table
 		$this->displayField('title');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
-		$this->belongsTo('users',[
+		$this->belongsTo('Users',[
 				'foreignKey'=>'user_id',
 		]);
-		$this->hasMany('playlist_vidos',[
+		$this->hasMany('Playlist_vidos',[
 				'foreignKey'=>'playlist_id',
 		]);
 	}
