@@ -1,3 +1,3 @@
 $(function(){
-	$('#adminOrderEdit2Button').on('click',adminOrderEditRequest);
+	$('window').onload(adminOrderEditRequest);
 });
