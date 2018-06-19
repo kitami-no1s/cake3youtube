@@ -19,6 +19,10 @@ class PlaylistVideosTable extends Table
 		$this->addBehavior('Timestamp');
 		$this->belongsTo('playlists',[
 				'foreignKey'=>'playlist_id',
+				'joinType'=>'INNER'
+		]);
+		$this->hasMany('comments',[
+				'foreignkey' => 'video_id'
 		]);
 	}
 
