@@ -35,8 +35,8 @@ $(function() {
 
 //GETで持ってきたvideoIdを取得
 function getVideoId(event){
-	videoId = $('#player').data("videoid");
-	login_user_id = $('#player').data("login_user_id")
+	videoId = $('#player').data("video_id");
+	login_user_id = $('#player').data("login_user_id");
 	console.log(videoId);
 	search_related(videoId);
 	startPlayer();
