@@ -1,3 +1,4 @@
+<div class="header1">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<?=$this->Html->link("YouTube","/admin/playlists/index",["class"=>"navbar-brand"]); ?>
 			<table>
@@ -19,4 +20,4 @@
 				</div>
 		</div>
 </div>
-		
+</div>
