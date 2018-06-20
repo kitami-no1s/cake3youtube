@@ -1,6 +1,12 @@
 //ビデオID
 var videoId;
+//ログインしているユーザのid
 var login_user_id;
+//再生中の動画のタイトル
+var title;
+//再生中の動画のサムネ
+var thum;
+var v_code;
 var apiKey = 'AIzaSyDkQYaQ7QLoV_RG2ltkPvsptAsvATJXwD8';
 //Iframe Player APIを非同期にロード
 var tag = document.createElement('script');
@@ -11,7 +17,21 @@ firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
 
 var player;
 
-
+function addToMyplaylist(event){
+	var playlist_id = $('#addVideo [name=playlist_id]').val();
+	console.log(playlist_id);
+	$.ajax({
+		url:"/cake3youtube/admin/playlist-videos/addajax",
+		type: "POST",
+		data: {
+			playlist_id : playlist_id,
+			title : title,
+			thum : thum,
+			v_code : v_code
+		},
+		dataType:"json"
+	});
+}
 function startPlayer(){
 	player = new YT.Player('player',{
 		height:'390',
@@ -30,6 +50,7 @@ function onPlayerReady(event){
 //画面がロードされたら作動
 $(function() {
 	$(window).on('load', getVideoId);
+	$('#addVideoButton').on('click',addToMyplaylist);
 	
 });
 
@@ -38,10 +59,33 @@ function getVideoId(event){
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	console.log(videoId);
-	search_related(videoId);
+	getVideoInfo(videoId);
 	startPlayer();
 }
 
+function getVideoInfo(videoId)
+{
+	gapi.client.setApiKey(apiKey);
+	gapi.client.load('youtube','v3',function(){
+	});
+	var request = gapi.client.request({
+		'path': '/youtube/v3/videos',
+		'params':{
+			'id':videoId,
+			'part': 'snippet',
+		}
+	});
+	request.execute(function(data){
+		console.log(data);
+		title = data.items[0].snippet.title;
+		thum = data.items[0].snippet.thumbnails.default.url;
+		v_code = videoId;
+ 		$('#movie_title').html(title);
+		$('#description').html(data.items[0].snippet.description);
+	});
+	search_related(videoId);
+	
+};
 function search_related(videoId) {
 	gapi.client.setApiKey(apiKey);
 	gapi.client.load('youtube','v3',function(){

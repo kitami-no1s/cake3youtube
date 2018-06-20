@@ -1,6 +1,14 @@
 <?php $this->prepend('script',$this->Html->script('youtube_api_play.js')); ?>
 <div id="main_box" class="clearfix">
 	<div id="contents">
+		<?php
+		echo $this->Form->create("PlaylistVideos",[
+			"id"=>"addVideo"
+		]);
+		echo $this->Form->input('playlist_id',['options' => $myplaylists,"empty"=>"選択"]);
+		echo $this->Form->button("登録",["type"=>"button","id"=>"addVideoButton"]);
+		echo $this->Form->end();
+		?>
 		<div id="movie_title"></div>
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $video_id ?>" data-login_user_id = "<?= $login_user_id ?>"></div>
