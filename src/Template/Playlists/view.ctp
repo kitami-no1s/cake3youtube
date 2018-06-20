@@ -1,3 +1,4 @@
+<?php $this->prepend('script',$this->Html->script('youtube_api_playlist.js')); ?>
 <h1 class="page-header"><?= h($playlist->title)?></h1>
 <table class="table" cellpadding="0" cellspacing="0">
 <tr>

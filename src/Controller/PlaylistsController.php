@@ -16,7 +16,7 @@ class PlaylistsController extends AppController
 	public function view($playlist_id = null)
 	{
 		try{
-			$event = $this->Playlists->get($playlist_id,[
+			$playlist = $this->Playlists->get($playlist_id,[
 					'contain' => ['Users'],
 			]);
 		} catch(\Exception $e){
