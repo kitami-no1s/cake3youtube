@@ -15,8 +15,8 @@ class VideosController extends AppController
 
 	public function play()
 	{
+		$login_user_id = $this->MyAuth->user("id");
 		$video_id = $_GET['videoId'];
-
-		$this->set('video_id',$video_id);
+		$this->set(compact('video_id','login_user_id'));
 	}
 }
