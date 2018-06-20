@@ -20,9 +20,6 @@ function startPlayer(){
 			'onReady':onPlayerReady
 		}
 	});
-	
-	$("#movie_title").html(movie.snippet.title);
-	$("#description").html(movie.snippet.description);
 }
 //プレイヤが準備できたら呼び出される
 function onPlayerReady(event){
@@ -37,8 +34,9 @@ $(function() {
 
 //GETで持ってきたvideoIdを取得
 function getVideoId(event){
-	videoId = $('#player').attr("videoId");
-	search_related(videoId);
+	videoId = $('#player').data("videoId");
+	console.log(videoId);
+	startPlayer();
 }
 
 function search_related(videoId) {
@@ -48,7 +46,7 @@ function search_related(videoId) {
 	var request = gapi.client.request({
 		'path': '/youtube/v3/search',
 		'params':{
-			'q':videoId,
+			'id.videoId':videoId,
 			'type': 'video',
 			'relatedToVideoId':videoId,
 			'maxResults':20,
@@ -74,6 +72,5 @@ function search_related(videoId) {
 						'</tr>');
 			}
 		}
-	startPlayer();
 	});
 }
