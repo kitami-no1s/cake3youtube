@@ -1,5 +1,6 @@
 //ビデオID
 var videoId;
+var login_user_id;
 var apiKey = 'AIzaSyDkQYaQ7QLoV_RG2ltkPvsptAsvATJXwD8';
 //Iframe Player APIを非同期にロード
 var tag = document.createElement('script');
@@ -34,8 +35,10 @@ $(function() {
 
 //GETで持ってきたvideoIdを取得
 function getVideoId(event){
-	videoId = $('#player').data("videoId");
+	videoId = $('#player').data("videoid");
+	login_user_id = $('#player').data("login_user_id")
 	console.log(videoId);
+	search_related(videoId);
 	startPlayer();
 }
 
@@ -46,7 +49,6 @@ function search_related(videoId) {
 	var request = gapi.client.request({
 		'path': '/youtube/v3/search',
 		'params':{
-			'id.videoId':videoId,
 			'type': 'video',
 			'relatedToVideoId':videoId,
 			'maxResults':20,
@@ -60,16 +62,29 @@ function search_related(videoId) {
 		for(var i in data.items){
 			if(data.items[i].id.videoId && 
 				data.items[i].id.kind=="youtube#video"){
+				if(login_user_id == null){
 				$('#related table').append(
 						'<tr class="movie_box" id="' + data.items[i].id.videoId + '">' +
 						'<td class="thum">' +
-						'<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>' +
+						'<img src="' + data.items[i].snippet.thumbnails.default.url + '" width="200px"/>' +
 						'</td>' + '<td class="details">' + 
-						'<a href="http:/localhost/videos/play?videoId=' +
+						'<a href="http://localhost/cake3youtube/videos/play?videoId=' +
 						data.items[i].id.videoId + '">'+ data.items[i].snippet.title + '</a><br/>' +
-						'<span class="description">'+ data.items[i].snippet.description + '</span>' +
+						'<span class="description"></span>' +
 						'</td>'+
 						'</tr>');
+				}else{
+				$('#related table').append(
+						'<tr class="movie_box" id="' + data.items[i].id.videoId + '">' +
+						'<td class="thum">' +
+						'<img src="' + data.items[i].snippet.thumbnails.default.url + '" width="200px"/>' +
+						'</td>' + '<td class="details">' + 
+						'<a href="http://localhost/cake3youtube/admin/videos/play?videoId=' +
+						data.items[i].id.videoId + '">'+ data.items[i].snippet.title + '</a><br/>' +
+						'<span class="description"></span>' +
+						'</td>'+
+						'</tr>');
+				}
 			}
 		}
 	});
