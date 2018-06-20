@@ -2,7 +2,7 @@
 <h1 class="page-header" >詳細</h1>
 <div id=result></div>
 <table>
-<?php //foreach($playlist->playlist_videos->v_code as $video): ?>
+<?php foreach($playlist->playlist_videos->v_code as $video): ?>
 	
 	<td class="thum"></td>
 	<td class="title"></td>
