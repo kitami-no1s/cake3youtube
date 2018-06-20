@@ -1,14 +1,14 @@
 $(function() {
-	$(window).on('load', getPlaylist);
+	$(window).on('load', getPlaylist_id);
 	
 });
-//検索ワード取得
-function getKeyword(event) {
-	var keyword = $(".page-header").attr("id");
-	search(keyword);
+//プレイリスト取得
+function getPlaylist_id(event) {
+	var playlist_id = $(".page-header").attr("id");
+	search(playlist_id);
 }
 //YoutubeAPIで検索
-function search(keyword) {
+function search(playlist_id) {
 	var videoId;
 	var apiKey = 'AIzaSyDkQYaQ7QLoV_RG2ltkPvsptAsvATJXwD8';
 	gapi.client.setApiKey(apiKey);
@@ -17,7 +17,7 @@ function search(keyword) {
 	var request = gapi.client.request({
 		'path': '/youtube/v3/search',
 		'params':{
-			'q':keyword,
+			'q':playlist_id,
 			'type': 'video',
 			'relatedToVideoId':videoId,
 			'maxResults':20,
