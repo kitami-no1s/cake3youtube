@@ -1,9 +1,8 @@
-<div class="header1">
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="top">
 		<?=$this->Html->link("YouTube","/admin/playlists/index",["class"=>"navbar-brand"]); ?>
 			<table>
 				<td><?=$this->Form->create("Videos",['type'=>'get','url'=>['controller'=>'Videos','action'=>'result']]); ?></td>
-				<td><?=$this->Form->input('keyword',['label'=>false]); ?></td>
+				<td><?=$this->Form->input('keyword',['label'=>false,'style'=>'margin-top: 15px']); ?></td>
 				<td><?=$this->Form->button("検索"); ?></td>
 				<td><?=$this->Form->end(); ?></td>
 			</table>
@@ -18,6 +17,5 @@
 						<p><?=$this->Html->link("ログアウト","/admin/users/logout")?></li>
 					</div>
 				</div>
-		</div>
-</div>
+			</div>
 </div>

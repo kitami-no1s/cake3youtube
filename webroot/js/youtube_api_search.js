@@ -3,9 +3,10 @@ $(function() {
 	
 });
 var login_user_id;
-	
 //検索ワード取得
 function getKeyword(event) {
+	$('#result').hide();
+	$('#loading').fadeIn();
 	var keyword = $(".page-header").attr("id");
 	login_user_id = $(".page-header").data("login_user_id");
 	search(keyword);
@@ -66,5 +67,7 @@ function search(keyword) {
 				
 			}
 		}
+		$('#loading').fadeOut();
+		$('#result').show();
 	});
 }
