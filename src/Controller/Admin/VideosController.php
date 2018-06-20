@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Admin;
 use App\Controller\Admin\AppController;
+use Cake\ORM\TableRegistry;
 
 class VideosController extends AppController
 {
@@ -15,8 +16,11 @@ class VideosController extends AppController
 
 	public function play()
 	{
+		$playlists = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
+		$myplaylists = $playlists->find('list')->where(['user_id'=>$login_user_id]);
+		
 		$video_id = $_GET['videoId'];
-		$this->set(compact('video_id','login_user_id'));
+		$this->set(compact('video_id','login_user_id','myplaylists'));
 	}
 }

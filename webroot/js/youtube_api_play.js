@@ -1,6 +1,8 @@
 //ビデオID
 var videoId;
+//ログインしているユーザのid
 var login_user_id;
+
 var apiKey = 'AIzaSyDkQYaQ7QLoV_RG2ltkPvsptAsvATJXwD8';
 //Iframe Player APIを非同期にロード
 var tag = document.createElement('script');
@@ -38,10 +40,29 @@ function getVideoId(event){
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	console.log(videoId);
-	search_related(videoId);
+	getVideoInfo(videoId);
 	startPlayer();
 }
-
+function getVideoInfo(videoId)
+{
+	gapi.client.setApiKey(apiKey);
+	gapi.client.load('youtube','v3',function(){
+	});
+	var request = gapi.client.request({
+		'path': '/youtube/v3/videos',
+		'params':{
+			'id':videoId,
+			'part': 'snippet',
+		}
+	});
+	request.execute(function(data){
+		console.log(data);
+		$('#movie_title').html(data.items[0].snippet.title);
+		$('#description').html(data.items[0].snippet.description);
+	});
+	search_related(videoId);
+	
+};
 function search_related(videoId) {
 	gapi.client.setApiKey(apiKey);
 	gapi.client.load('youtube','v3',function(){
