@@ -13,6 +13,9 @@ class PlaylistVideosController extends AppController
 				'ajax'
 		] )) {
 			$playlist_video = $this->PlaylistVideos->newEntity ($this->request->data );
+			$count_playlist_videos=$this->PlaylistVideos->find()->where(['playlist_id'=>$this->request->data['playlist_id']])
+										->count();
+			$playlist_video['seq'] = $count_playlist_videos + 1;
 			$this->PlaylistVideos->save ( $playlist_video );
 			}
 	}
