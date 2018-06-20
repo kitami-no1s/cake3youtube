@@ -17,7 +17,7 @@ body{
 table{
 	margin-top: 10px;
 	float: left;
-	width: 800px;
+	width: auto;
 }
 #start-menu{
 	margin-top: 10px;
@@ -32,11 +32,11 @@ table{
 	text-align: left;
 }
 #all-playlists{
-	width:500px;
+	width:50%;
 	float:left;
 }
 #my-playlists{
-	width:500px;
+	width:50%;
 	float:right;
 }
 #loading{
@@ -65,3 +65,14 @@ table{
 .description{
 	font-size: 0.5em;
 }
+table.index{
+ border:dashed 2px #f44336;
+ width: 50%;
+ }
+ table.index td{
+ border:double 2px #2196f3; width: 600px;
+ font-size: 25px;
+ }
+ .header1{
+	 overflow: hidden;
+ }
