@@ -39,3 +39,29 @@ table{
 	width:500px;
 	float:right;
 }
+#loading{
+	display: none;
+	posotion: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	backgournd: url(http://no1s.biz/kenshu/image/loader.gif) no-repeat center center #ccc;
+	opacity: 0.5;
+	z-index: 9999;
+}
+
+.movie_box{
+	
+}
+.thum{
+	width: 100px;
+	background-color: #ffe0f2;
+}
+.details{
+	vertical-align: top;
+	font-size: 1.5em;
+}
+.description{
+	font-size: 0.5em;
+}

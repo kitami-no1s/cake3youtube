@@ -1,10 +1,5 @@
-<h1 class="page-header"><?= h($playlist->title)?></h1>
-<table class="table" cellpadding="0" cellspacing="0">
-<tr>
-	<th scope="col"><?= $this->Paginator->sort('seq') ?></th>
-
-</tr>
-
-<tr>
-</tr>
-</table>
+<?php $this->prepend('script',$this->Html->script('youtube_api_playlist.js')); ?>
+<h1 class="page-header" id="<?= $playlist_id ?>" ><?= h($playlist->title)?>詳細</h1>
+<div id=result></div>
+<script
+src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
