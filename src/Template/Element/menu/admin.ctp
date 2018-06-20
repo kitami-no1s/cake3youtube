@@ -9,7 +9,7 @@
 			<p class="navbar-text">ようこそ、<?=$auth["email"]; ?></p>
 
 			<div id="login-menu">
-			<p><?=$this->Html->link("マイプレイリスト","/admin/mylist/index");?></p>	
+			<p><?=$this->Html->link("マイプレイリスト","/admin/mylists/index");?></p>	
 				<div class="dropdown">
 					<?= $this->Html->link("管理","#",["data-toggle"=>"dropdown"]); ?>
 					<div class="dropdown-menu">
