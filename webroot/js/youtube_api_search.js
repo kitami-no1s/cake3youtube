@@ -40,7 +40,7 @@ function search(keyword) {
 						'</td>' + '<td class="details">' +
 						'<a href="http://localhost/cake3youtube/videos/play?videoId='
 						+ data.items[i].id.videoId  +
-						'&keyword=' + keyword + '">'  + data.items[i].snippet.title + 
+						'">'  + data.items[i].snippet.title + 
 						'</a><br/>' +
 						'<span class="description">'+ data.items[i].snippet.description + '</span>' +
 						'</td>'+
