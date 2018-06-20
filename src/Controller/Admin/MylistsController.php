@@ -9,7 +9,14 @@ class MylistsController extends AppController
 	public function index()
 	{
 		$mylistindex = TableRegistry::get('Playlists');
+		$login_user_id = $this->MyAuth->user("id");
+		$this->paginate = [
+				'contain' => ['PlaylistVideos'],
+				"limit" => 5,
+				"conditions" => ['user_id'=>$login_user_id]
+		];
 		$mylists = $this->paginate($mylistindex);
+		$this->set('mylists',$mylists);
 	}
 	public function add(){
 		
