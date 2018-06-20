@@ -1,5 +1,5 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<?=$this->Html->link("YouTube","/playlists/index",["class"=>"navbar-brand"]); ?>
+		<?=$this->Html->link("YouTube","/admin/playlists/index",["class"=>"navbar-brand"]); ?>
 			<table>
 				<td><?=$this->Form->create("Videos",['type'=>'get','url'=>['controller'=>'Videos','action'=>'result']]); ?></td>
 				<td><?=$this->Form->input('keyword',['label'=>false]); ?></td>

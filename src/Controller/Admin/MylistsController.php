@@ -16,10 +16,10 @@ class MylistsController extends AppController
 		$mylist_add = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
 		$playlist = $mylist_add->newEntity();
-		
+		$playlist->user_id=$login_user_id;
 		if($this->request->is('post')){
-			$playlist = $this->Playlists->patchEntity($playlist,$this->request->data);
-			if($this->Playlists->save($playlist)){
+			$playlist = $mylist_add->patchEntity($playlist,$this->request->data);
+			if($mylist_add->save($playlist)){
 				$this->Flash->success(__('新規登録しました'));
 				return $this->redirect(['action' => 'index']);
 			}
