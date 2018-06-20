@@ -20,7 +20,7 @@ class PlaylistsTable extends Table
 		$this->belongsTo('Users',[
 				'foreignKey'=>'user_id',
 		]);
-		$this->hasMany('Playlist_videos',[
+		$this->hasMany('PlaylistVideos',[
 				'foreignKey'=>'playlist_id',
 		]);
 	}

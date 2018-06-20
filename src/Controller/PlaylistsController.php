@@ -17,12 +17,13 @@ class PlaylistsController extends AppController
 	{
 		try{
 			$playlist = $this->Playlists->get($playlist_id,[
-					'contain' => ['Users'],
+					'contain' => ['Users','PlaylistVideos'],
 			]);
 		} catch(\Exception $e){
 			$this->Flash->error(__('プレイリストが存在しません'));
 			return $this->redirect(['action' => 'index']);
 		}
+		$this->set('playlist');
 	}
 
 }

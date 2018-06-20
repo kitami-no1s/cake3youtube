@@ -17,8 +17,9 @@ class PlaylistVideosTable extends Table
 		$this->displayField('id');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
-		$this->belongsTo('playlists',[
+		$this->belongsTo('Playlists',[
 				'foreignKey'=>'playlist_id',
+				'joinType'=>'INNER'
 		]);
 	}
 

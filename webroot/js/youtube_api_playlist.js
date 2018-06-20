@@ -1,15 +1,12 @@
 $(function() {
-	$(window).on('load', getPlaylist_id);
+	$(window).on('load');
 	
 });
-//プレイリスト取得
-function getPlaylist_id(event) {
-	var playlist_id = $(".page-header").attr("id");
-	search(playlist_id);
-}
+
+var video_Id="7DwAwNNHaW8";
+
 //YoutubeAPIで検索
-function search(playlist_id) {
-	var videoId;
+function search(video_Id) {
 	var apiKey = 'AIzaSyDkQYaQ7QLoV_RG2ltkPvsptAsvATJXwD8';
 	gapi.client.setApiKey(apiKey);
 	gapi.client.load('youtube','v3',function(){
@@ -17,9 +14,8 @@ function search(playlist_id) {
 	var request = gapi.client.request({
 		'path': '/youtube/v3/search',
 		'params':{
-			'q':playlist_id,
 			'type': 'video',
-			'relatedToVideoId':videoId,
+			'relatedToVideoId':video_Id,
 			'maxResults':20,
 			'part': 'snippet',
 		}
@@ -27,24 +23,12 @@ function search(playlist_id) {
 	//Templateに描画
 	request.execute(function(data){
 		console.log(data);
-		$('#result').text('');
-		$('#result').append('<table>');
 		for(var i in data.items){
 			if(data.items[i].id.videoId && 
 				data.items[i].id.kind=="youtube#video"){
 				//関連動画をリストに追加
-				$('#result table').append(
-						'<tr class="movie_box">' + 
-						'<td class="thum">' +
-						'<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>' +
-						'</td>' + '<td class="details">' +
-						'<a href="http://localhost/cake3youtube/videos/play?videoId='
-						+ data.items[i].id.videoId  +
-						'&keyword=' + keyword + '" target="_blank">'  + data.items[i].snippet.title + 
-						'</a><br/>' +
-						'<span class="description">'+ '' + '</span>' +
-						'</td>'+
-						'</tr>');
+				$('.thum').html('<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>');
+				
 			}
 		}
 	});
