@@ -18,6 +18,7 @@ firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
 var player;
 
 function addToMyplaylist(event){
+	adminPlaylistFormInit()
 	var playlist_id = $('#addVideo [name=playlist_id]').val();
 	console.log(playlist_id);
 	$.ajax({
@@ -29,7 +30,9 @@ function addToMyplaylist(event){
 			thum : thum,
 			v_code : v_code
 		},
-		dataType:"json"
+		dataType:"json",
+		success:adminAddVideoSuccess,
+		error:adminAddVideoError
 	});
 }
 function startPlayer(){
@@ -132,4 +135,47 @@ function search_related(videoId) {
 			}
 		}
 	});
+}
+function adminPlaylistFormInit(){
+	$('#message').remove();
+	$('.help-block').remove();
+	$('.form-group').removeClass('has-error');
+}
+function adminAddVideoSuccess(result){
+	if(result['status'] == 'success'){
+		showSuccessMessage("お気に入りに追加しました")
+	}else{
+		showErrorMessage("お気に入り追加に失敗しました");
+		showValidationMessage(result['errors']);
+	}
+}
+
+function adminAddVideoError(result){
+	showErrorMessage("エラーが発生しました");
+}
+
+function showSuccessMessage(message){
+	var tag = '<div id="message" class="alert alert-success">';
+	tag += message;
+	tag += '</div>';
+	$('.main').prepend(tag);
+}
+
+function showErrorMessage(message){
+	var tag = '<div id="message" class="alert alert-danger">';
+	tag += message;
+	tag += '</div>';
+	$('.main').prepend(tag);
+}
+
+function showValidationMessage(errors){
+	for(key in errors){
+		var obj=$("[name='" + key +"']");
+		obj.parent().addClass('has-error');
+		var field = errors[key];
+		for(var value in field){
+			var tag ='<div class="help-block">' + field[value] + '</div>';
+			obj.after(tag);
+		}
+	}
 }
