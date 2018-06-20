@@ -2,9 +2,12 @@ $(function() {
 	$(window).on('load', getKeyword);
 	
 });
+var login_user_id;
+	
 //検索ワード取得
 function getKeyword(event) {
 	var keyword = $(".page-header").attr("id");
+	login_user_id = $(".page-header").data("login_user_id");
 	search(keyword);
 }
 //YoutubeAPIで検索
@@ -32,19 +35,35 @@ function search(keyword) {
 		for(var i in data.items){
 			if(data.items[i].id.videoId && 
 				data.items[i].id.kind=="youtube#video"){
+				if(login_user_id == null){
 				//関連動画をリストに追加
 				$('#result table').append(
 						'<tr class="movie_box">' + 
 						'<td class="thum">' +
 						'<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>' +
-						'</td>' + '<td class="details">' +
+						'</td>' + '<td class="details">' + 
 						'<a href="http://localhost/cake3youtube/videos/play?videoId='
-						+ data.items[i].id.videoId  +
-						'">'  + data.items[i].snippet.title + 
+						+ data.items[i].id.videoId  +'">'
+						+ data.items[i].snippet.title + 
 						'</a><br/>' +
 						'<span class="description">'+ data.items[i].snippet.description + '</span>' +
 						'</td>'+
 						'</tr>');
+				}else{
+					$('#result table').append(
+						'<tr class="movie_box">' + 
+						'<td class="thum">' +
+						'<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>' +
+						'</td>' + '<td class="details">' + 
+						'<a href="http://localhost/cake3youtube/admin/videos/play?videoId='
+						+ data.items[i].id.videoId  +'">'
+						+ data.items[i].snippet.title + 
+						'</a><br/>' +
+						'<span class="description">'+ data.items[i].snippet.description + '</span>' +
+						'</td>'+
+						'</tr>');						
+				}
+				
 			}
 		}
 	});

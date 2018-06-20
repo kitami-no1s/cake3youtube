@@ -7,10 +7,10 @@ class VideosController extends AppController
 
 	public function result()
 	{
-
+		$login_user_id = $this->MyAuth->user("id");
 		$keyword=$_GET['keyword'];
 
-		$this->set('keyword',$keyword);
+		$this->set(compact('keyword','login_user_id'));
 	}
 
 	public function play()
