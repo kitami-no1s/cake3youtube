@@ -66,10 +66,10 @@ function search_related(videoId) {
 						'<tr class="movie_box" id="' + data.items[i].id.videoId + '">' +
 						'<td class="thum">' +
 						'<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>' +
-						'</a>' + '</td>' + '<td class="details">' + 
-						'<a href="http://localhost/cake3youtube/videos/play?videoId=' +
-						data.items[i].id.videoId + '" target="_blank">'+ data.items[i].snippet.title + '<br/>' +
-						'<span class="description">'+ '' + '</span>' +
+						'</td>' + '<td class="details">' + 
+						'<a href="http:/localhost/videos/play?videoId=' +
+						data.items[i].id.videoId + '">'+ data.items[i].snippet.title + '</a><br/>' +
+						'<span class="description">'+ data.items[i].snippet.description + '</span>' +
 						'</td>'+
 						'</tr>');
 			}
