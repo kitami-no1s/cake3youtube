@@ -8,13 +8,13 @@ class CommentsController extends AppController
 		$login_user_id = $this->MyAuth->user("id");
 		try{
 			$comment = $this->Comments->newEntity();
-			$commet = $this->Commets->get($video_id,[
+			$comment = $this->Commets->get($video_id,[
 					'contain' => ['Users'],
 			]);
 			$comment->video_id=$video_id;
 			$comment->user_id=$login_user_id;
-			$check = $this->Chats->Users->find()
-			->where(['Users.user_id'=>$login_user_id,'video_id'=>$video_id])
+			$check = $this->Comments->Users->find()
+			->where(['Users.user_id'=>$login_user_id])
 			->count();
 			//dump($check);exit;
 			if($check == 0){
