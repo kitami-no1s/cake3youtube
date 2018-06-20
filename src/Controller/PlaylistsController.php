@@ -16,14 +16,14 @@ class PlaylistsController extends AppController
 	public function view($playlist_id = null)
 	{
 		try{
-			$playlist = $this->Playlists->get($playlist_id,[
-					'contain' => ['Users','PlaylistVideos'],
+			$playlist_videos = $this->Playlists->PlaylistVideos->find()->where(['playlist_id'=>$playlist_id
 			]);
+			$playlist_title = $this->Playlists->get($playlist_id);
 		} catch(\Exception $e){
 			$this->Flash->error(__('プレイリストが存在しません'));
 			return $this->redirect(['action' => 'index']);
 		}
-		$this->set('playlist');
+		$this->set(compact('playlist_videos','playlist_title'));
 	}
 
 }

@@ -4,9 +4,9 @@
 <?php foreach($playlists as $playlist): ?>
 <?php if($playlist->public == 1): ?>
 <tr>
-	
 	<td><?= h($playlist->title) ?></td>
-	<td><?= $this->Html->link("表示",["action" => "view",$playlist->id]) ?></td>
+	<td><?= h($playlist->user->name) ?></td>	
+	<td><?= $this->Html->link("動画一覧",["action" => "view",$playlist->id]) ?></td>
 </tr>
 <?php endif; ?>
 <?php endforeach; ?>
@@ -19,7 +19,7 @@
 <?php foreach($myplaylists as $myplaylist): ?>
 <tr>
 	<td><?= h($myplaylist->title) ?></td>
-	<td><?= $this->Html->link("表示",["action" => "view",$playlist->id]) ?></td>
+	<td><?= $this->Html->link("動画一覧",["action" => "view",$playlist->id]) ?></td>
 </tr>
 <?php endforeach; ?>
 </table>

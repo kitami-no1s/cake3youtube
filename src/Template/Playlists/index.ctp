@@ -4,7 +4,8 @@
 <?php if($playlist->public == 1): ?>
 <tr>
 	<td><?= h($playlist->title) ?></td>
-	<td><?= $this->Html->link("表示",["action" => "view",$playlist->id]) ?>
+	<td><?= h($playlist->user->name) ?></td>
+	<td><?= $this->Html->link("動画一覧",["action" => "view",$playlist->id]) ?>
 </tr>
 <?php endif ?>
 <?php endforeach; ?>
