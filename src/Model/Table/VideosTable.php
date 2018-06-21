@@ -8,7 +8,7 @@ use Cake\Validation\Validator;
 use Cake\ORM\Association\BelongsTo;
 
 
-class PlaylistVideosTable extends Table
+class VideosTable extends Table
 {
 	public function initialize(array $config)
 	{
@@ -17,11 +17,11 @@ class PlaylistVideosTable extends Table
 		$this->displayField('id');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
-		$this->belongsTo('playlists',[
+		$this->belongsTo('Playlists',[
 				'foreignKey'=>'playlist_id',
 				'joinType'=>'INNER'
 		]);
-		$this->hasMany('comments',[
+		$this->hasMany('Comments',[
 				'foreignkey' => 'video_id'
 		]);
 	}

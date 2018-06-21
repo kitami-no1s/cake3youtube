@@ -1,4 +1,5 @@
 <?php $this->prepend('script',$this->Html->script('youtube_api_play.js')); ?>
+<?php $this->prepend('script',$this->Html->script('comments.js')); ?>
 <div id="main_box" class="clearfix">
 	<div id="contents">
 		<?php
@@ -13,6 +14,14 @@
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $video_id ?>" data-login_user_id = "<?= $login_user_id ?>"></div>
 		<p id="description"></p>
+		<div id="comments">
+		<?php foreach($comments as $comment){ ?>
+			<div id="comment"><p><?= h($comment->user->name) ?></p>
+							  <p><?= h($comment->body) ?></p>
+							  <p><?= h($comment->created) ?></p>
+			</div>
+		<?php } ?>
+		</div>
 	</div>
 	<div id="related" class="pull-left"></div>
 </div>
