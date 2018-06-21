@@ -3,6 +3,7 @@
 <table>
 <?php foreach($playlist_videos as $playlist_video): ?>
 	<tr>
+		<td><?= h($playlist_video->seq) ?></td>
 		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
 		<td><?= h($playlist_video->title) ?></td>		
 	</tr>

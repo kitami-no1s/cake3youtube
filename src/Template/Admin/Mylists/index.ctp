@@ -5,7 +5,7 @@
 	</div>
 	
 	
-	<table border="1" class="mylist">
+	<table border="1" class="index">
 	<tr>
 		<th scope="col"><?= $this->Paginator->sort('順番') ?></th>
 		<th scope="col"><?= $this->Paginator->sort('プレイリスト名') ?></th>
