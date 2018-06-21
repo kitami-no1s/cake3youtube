@@ -25,5 +25,10 @@ class PlaylistsController extends AppController
 		}
 		$this->set(compact('playlist_videos','playlist_title'));
 	}
+	public function play($playlist_id=null, $v_code=null)
+	{
+		$playlist = $this->Playlists->PlaylistVideos->find()->where(['playlist_id'=>$playlist_id,]);
+		$this->set(compact('v_code','playlist'));
+	} 
 
 }
