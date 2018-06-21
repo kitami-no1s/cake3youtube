@@ -17,12 +17,12 @@ class CommentsTable extends Table
 		$this->displayField('id');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
-		$this->belongsTo('videos',[
+		$this->belongsTo('Videos',[
 				'foreignKey'=>'video_id',
 				'joinType'=>'INNER'
 				
 		]);
-		$this->belongsTo('users',[
+		$this->belongsTo('Users',[
 				'foreignKey'=>'user_id',
 				'joinType'=>'INNER'
 		]);

@@ -19,8 +19,8 @@ class VideosController extends AppController
 		$playlists = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
 		$myplaylists = $playlists->find('list')->where(['user_id'=>$login_user_id]);
-		
 		$video_id = $_GET['videoId'];
-		$this->set(compact('video_id','login_user_id','myplaylists'));
+		
+		$this->set(compact('video_id','login_user_id','myplaylists','comments'));
 	}
 }
