@@ -49,24 +49,20 @@ class MylistsController extends AppController
 		$this->set(compact('playlist_videos','playlist_title'));
 		
 	}
-	public function deleteajax()
+	public function delete()
 	{
-		$this->autoRender = FALSE;
-		$result = [];
-		$mylist_delete = TableRegistry::get('Playlists');
-		dump($this->request->data['v_code']);
-		if($this->request->is(['ajax'])){
-			//foreach($this->request->data['v_code'])
-			$mylist_delete->PlaylistVideos->deleteAll(['v_code'=>$this->request->data['v_code'],
-			 'playlist_id'=>$this->request->data['playlist_id']]);
 		
-				$result['status']="success";
-				echo json_encode($result);
-				return;
-			
-			//$result['errors']=$playlistvideo->errors();
+		$v_codes = $this->request->data['v_code'];
+		$mylist_delete = TableRegistry::get('Playlists');
+		if($this->request->is('post')){
+			foreach($v_codes as $v_code){
+				$mylist_delete->PlaylistVideos->deleteAll([
+					'v_code'=>$v_code,
+			 		'playlist_id'=>$this->request->data['playlist_id']
+				]);
+			}
 		}
-		$result['status'] = "error";
-		echo json_code($result);
+		return $this->redirect(['action' => 'index']);
+		
 	}
 }
