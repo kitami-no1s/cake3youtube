@@ -13,6 +13,14 @@
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $video_id ?>" data-login_user_id = "<?= $login_user_id ?>"></div>
 		<p id="description"></p>
+		<div>
+		<?= $this->Form->create("Comments",[
+			"id"=>"addComment"
+		])	?>
+		<?= $this->Form->input("body") ?>
+		<?= $this->Form->button("投稿",["type"=>"button","id"=>"addCommentButton"]); ?>
+		<?= $this->Form->end(); ?>
+		</div>
 		<div id="comments">
 		</div>
 	</div>

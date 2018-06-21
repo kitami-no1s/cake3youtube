@@ -1,14 +1,14 @@
 //ビデオID
 var videoId;
-//ログインしているユーザのid
+// ログインしているユーザのid
 var login_user_id;
-//再生中の動画のタイトル
+// 再生中の動画のタイトル
 var title;
-//再生中の動画のサムネ
+// 再生中の動画のサムネ
 var thum;
 var v_code;
 var apiKey = 'AIzaSyDkQYaQ7QLoV_RG2ltkPvsptAsvATJXwD8';
-//Iframe Player APIを非同期にロード
+// Iframe Player APIを非同期にロード
 var tag = document.createElement('script');
 tag.src = 'http://www.youtube.com/player_api';
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -45,25 +45,26 @@ function startPlayer(){
 		}
 	});
 }
-//プレイヤが準備できたら呼び出される
+// プレイヤが準備できたら呼び出される
 function onPlayerReady(event){
 	event.target.playVideo();
 }
 
-//画面がロードされたら作動
+// 画面がロードされたら作動
 $(function() {
 	$(window).on('load', getVideoId);
 	$('#addVideoButton').on('click',addToMyplaylist);
+	$('#addCommentButton').on('click',addComment);
 	
 });
 
-//GETで持ってきたvideoIdを取得
+// GETで持ってきたvideoIdを取得
 function getVideoId(event){
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	console.log(videoId);
 	getVideoInfo(videoId);
-	getComments(videoId);
+	getComments();
 	startPlayer();
 }
 
@@ -109,7 +110,7 @@ function search_related(videoId) {
 		$('#related').append('<table>');
 		for(var i in data.items){
 			if(data.items[i].id.videoId && 
-				data.items[i].id.kind=="youtube#video"){
+				data.items[i].id.kind　==　"youtube#video"){
 				if(login_user_id == null){
 				$('#related table').append(
 						'<tr class="movie_box" id="' + data.items[i].id.videoId + '">' +
@@ -137,8 +138,9 @@ function search_related(videoId) {
 		}
 	});
 }
-//コメントをAjaxでとってくる
-function getComments(videoId){
+// コメントをAjaxでとってくる
+function getComments(){
+	console.log(videoId);
 	$.ajax({
 		url:"/cake3youtube/admin/comments/commentsajax",
 		type: "POST",
@@ -149,18 +151,30 @@ function getComments(videoId){
 		success:writeComments
 	});
 }
-//とってきたら書き込む
+// とってきたら書き込む
 function writeComments(data){
 	console.log(data);
 	for(var i in data){
-		if(data)
 		$("#comments").append(
 				"<div id=comment><p>" + data[i].body + "</p>" +
 				"<p>" + data[i].user.name + "</p><p>" + data[i].create + "</p>" +
 				"</div>");
 	}
 }
-
+// コメントが投稿されたら発動
+function addComment(event){
+	var body =  $('#addComment [name=body]').val();
+	$.ajax({
+		url:"/cake3youtube/admin/comments/addajax",
+		type: "POST",
+		data: {
+			'body':body,
+			'v_code':v_code,
+		},
+		dataType:"json",
+		success:getComments
+	});
+}
 function adminPlaylistFormInit(){
 	$('#message').remove();
 	$('.help-block').remove();
@@ -195,11 +209,11 @@ function showErrorMessage(message){
 
 function showValidationMessage(errors){
 	for(key in errors){
-		var obj=$("[name='" + key +"']");
+		var obj　=　$("[name='" + key +"']");
 		obj.parent().addClass('has-error');
 		var field = errors[key];
 		for(var value in field){
-			var tag ='<div class="help-block">' + field[value] + '</div>';
+			var tag =　'<div class="help-block">' + field[value] + '</div>';
 			obj.after(tag);
 		}
 	}
