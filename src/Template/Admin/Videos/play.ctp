@@ -15,12 +15,6 @@
 		<div id="player" data-video_id="<?= $video_id ?>" data-login_user_id = "<?= $login_user_id ?>"></div>
 		<p id="description"></p>
 		<div id="comments">
-		<?php foreach($comments as $comment){ ?>
-			<div id="comment"><p><?= h($comment->user->name) ?></p>
-							  <p><?= h($comment->body) ?></p>
-							  <p><?= h($comment->created) ?></p>
-			</div>
-		<?php } ?>
 		</div>
 	</div>
 	<div id="related" class="pull-left"></div>
