@@ -13,16 +13,17 @@
 		<th scope="col"><?= $this->Paginator->sort('Actioin') ?></th>
 	</tr>
 	<?php foreach($mylists as $mylist): ?>
-		<tr>
-			<td><?= $this->Number->format($mylist->id) ?></td>
-			<td><?= h($mylist->title) ?></td>
-			<td><?= h($mylist->modified) ?></td>
-			<td><?= $this->Html->link("編集",["action" => "edit",$mylist->id]) ?>
-				<?= $this->Html->link("削除",['controller'=>'Playlists','action'=>'delete',$mylist->id]) ?>
-			</td>
-		</tr>
+	<tr>
+		<td><?= $this->Number->format($mylist->id) ?></td>
+		<td><?= h($mylist->title) ?></td>
+		<td><?= h($mylist->modified) ?></td>
+		<td><?= $this->Html->link("編集",["action" => "edit",$mylist->id]) ?>
+			<?= $this->Html->link("削除",['controller'=>'Playlists','action'=>'delete',$mylist->id]) ?>
+		</td>
+	</tr>
+	<?php endforeach; ?>
 	</table>
-<?php endforeach; ?>
+
 	
 	
 	

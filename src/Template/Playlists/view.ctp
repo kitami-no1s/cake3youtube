@@ -5,7 +5,11 @@
 	<tr>
 		<td><?= h($playlist_video->seq) ?></td>
 		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
-		<td><?= h($playlist_video->title) ?></td>		
+		<td><?= $this->Html->link($playlist_video->title,[
+								"controller"=>"playlists","action" => "play",
+								$playlist_video->playlist_id,$playlist_video->v_code,
+								]) ?>
+		</td>
 	</tr>
 <?php endforeach ?>
 </table>

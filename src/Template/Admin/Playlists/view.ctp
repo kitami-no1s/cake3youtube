@@ -1,5 +1,16 @@
-<?php $this->prepend('script',$this->Html->script('youtube_api_playlist.js')); ?>
-<h1 class="page-header" >詳細</h1>
+<h1 class="page-header" ><?= h($playlist_title->title) ?></h1>
 <div id=result></div>
-<script
-src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+<table>
+<?php foreach($playlist_videos as $playlist_video): ?>
+	<tr>
+		<td><?= h($playlist_video->seq) ?></td>
+		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
+		<td><?= $this->Html->link($playlist_video->title,[
+								"controller"=>"playlists","action" => "play",
+								$playlist_video->playlist_id,$playlist_video->v_code,
+								]) ?>
+		</td>
+	</tr>
+<?php endforeach ?>
+</table>
+</div>
