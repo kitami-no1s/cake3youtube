@@ -19,7 +19,7 @@
 <?php foreach($myplaylists as $myplaylist): ?>
 <tr>
 	<td><?= h($myplaylist->title) ?></td>
-	<td><?= $this->Html->link("動画一覧",["action" => "view",$playlist->id]) ?></td>
+	<td><?= $this->Html->link("動画一覧",["action" => "view",$myplaylist->id]) ?></td>
 </tr>
 <?php endforeach; ?>
 </table>
