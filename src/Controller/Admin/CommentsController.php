@@ -32,15 +32,17 @@ class CommentsController extends AppController
 		}
 	}
 	
-	public function getcommentajax(){
+	public function commentsajax(){
 		$this->autoRender = false;
 		$result = [ ];
+		
+		//dump($this->request->data);exit;
 		
 		if ($this->request->is ( [
 				'ajax'
 		] )){
-			$comments = $this->Comments->find()->contain(['Videos'])
-						->where(['Videos.v_code'=>$this->request->data]);
+			$comments = $this->Comments->find()->contain(['Videos','Users'])
+						->where(['Videos.v_code'=>$this->request->data['v_code']]);
 						echo json_encode ( $comments );
 						return;
 		}

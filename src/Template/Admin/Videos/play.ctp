@@ -1,5 +1,4 @@
 <?php $this->prepend('script',$this->Html->script('youtube_api_play.js')); ?>
-<?php $this->prepend('script',$this->Html->script('comments.js')); ?>
 <div id="main_box" class="clearfix">
 	<div id="contents">
 		<?php

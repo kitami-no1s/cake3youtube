@@ -8,8 +8,17 @@ function getComments(event){
 		url:"/cake3youtube/admin/comments/getcommentajax",
 		type: "POST",
 		data: videoId,
-		dataType:"json"
+		dataType:"json",
+		success:writeComments
 	});
 }
 
-function writeComments(){}
+function writeComments(data){
+	for(var i in data){
+		if(data)
+		$("#comments").append(
+				"<div id=comment><p>" + data[i].body + "</p>" +
+				"<p>" + data[i].user.name + "</p><p>" + data[i].create + "</p>" +
+				"</div>");
+	}
+}
