@@ -19,7 +19,8 @@ class PlaylistVideosController extends AppController
 				//曲の順番を追加
 				$playlist_video['seq'] = $count_playlist_videos + 1;
 				//同じ動画がないか判定
-				$video = $this->PlaylistVideos->find()->where(['v_code'=>$this->request->data['v_code']])->count();
+				$video = $this->PlaylistVideos->find()->where(['v_code'=>$this->request->data['v_code']])
+				->andwhere(['playlist_id'=>$this->request->data['playlist_id']])->count();
 				if(empty($video)){
 					$this->PlaylistVideos->save ( $playlist_video );
 					$result['status']='success';
