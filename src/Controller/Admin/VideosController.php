@@ -9,7 +9,7 @@ class VideosController extends AppController
 	public function result()
 	{
 		$login_user_id = $this->MyAuth->user("id");
-		$keyword=$_GET['keyword'];
+		$keyword=$this->request->query['keyword'];
 
 		$this->set(compact('keyword','login_user_id'));
 	}
@@ -19,8 +19,8 @@ class VideosController extends AppController
 		$playlists = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
 		$myplaylists = $playlists->find('list')->where(['user_id'=>$login_user_id]);
-		$video_id = $_GET['videoId'];
+		$video_id = $this->request->query['videoId'];
 		
-		$this->set(compact('video_id','login_user_id','myplaylists','comments'));
+		$this->set(compact('video_id','login_user_id','myplaylists'));
 	}
 }

@@ -63,6 +63,7 @@ function getVideoId(event){
 	login_user_id = $('#player').data("login_user_id");
 	console.log(videoId);
 	getVideoInfo(videoId);
+	getComments(videoId);
 	startPlayer();
 }
 
@@ -136,6 +137,30 @@ function search_related(videoId) {
 		}
 	});
 }
+//コメントをAjaxでとってくる
+function getComments(videoId){
+	$.ajax({
+		url:"/cake3youtube/admin/comments/commentsajax",
+		type: "POST",
+		data: {
+			v_code : videoId,
+		},
+		dataType:"json",
+		success:writeComments
+	});
+}
+//とってきたら書き込む
+function writeComments(data){
+	console.log(data);
+	for(var i in data){
+		if(data)
+		$("#comments").append(
+				"<div id=comment><p>" + data[i].body + "</p>" +
+				"<p>" + data[i].user.name + "</p><p>" + data[i].create + "</p>" +
+				"</div>");
+	}
+}
+
 function adminPlaylistFormInit(){
 	$('#message').remove();
 	$('.help-block').remove();
