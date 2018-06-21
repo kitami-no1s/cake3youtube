@@ -8,7 +8,7 @@ class CommentsController extends AppController
 		$login_user_id = $this->MyAuth->user("id");
 		try{
 			$comment = $this->Comments->newEntity();
-			$comment = $this->Commets->get($video_id,[
+			$comment = $this->Comments->get($video_id,[
 					'contain' => ['Users'],
 			]);
 			$comment->video_id=$video_id;

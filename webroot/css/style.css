@@ -101,5 +101,26 @@ table .mylist{
 	
 }
 #contents{
-	
+	width:640px;
+	float:left;
+	margin:10px;
+}
+#related{
+	background-color:#f1f1f1;
+	margin-top:20px;
+	padding-left:50px;
+	width: 500px;
+}
+#related table{
+	background-color:#fff;
+}
+#related table tr{
+	border-bottom: 3px solid #f1f1f1;
+}
+#related td.thum{
+	padding:10px 10px 20px 10px;
+}
+#related td.details{
+	padding:10px 10px 20px 0;
+	vertical-slign: top;
 }
