@@ -5,6 +5,7 @@
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $v_code ?>"></div>
 		<p id="description"></p>
+	<div id="comments"></div>
 	</div>
 	<div id="related" class="pull-left">
 	<table>
@@ -24,7 +25,9 @@
 	
 	
 	</table>
+	<div id="comments"></div>
 	</div>
+	
 </div>
 <script
 src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>

@@ -37,7 +37,8 @@ class PlaylistsController extends AppController
 	}
 	public function play($playlist_id=null, $v_code=null)
 	{
+		$login_user_id = $this->MyAuth->user("id");
 		$playlist = $this->Playlists->PlaylistVideos->find()->where(['playlist_id'=>$playlist_id,]);
-		$this->set(compact('v_code','playlist'));
+		$this->set(compact('v_code','playlist','login_user_id'));
 	}
 }

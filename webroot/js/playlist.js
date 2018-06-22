@@ -1,6 +1,8 @@
 //ビデオID
 var videoId;
 //再生中の動画のタイトル
+//ログインしているユーザのid
+var login_user_id;
 var title;
 //再生中の動画のサムネ
 var thum;
@@ -51,6 +53,8 @@ function onPlayerReady(event){
 $(function() {
 	$(window).on('load', getVideoId);
 	$('#addVideoButton').on('click',addToMyplaylist);
+	$('#addCommentButton').on('click',addComment);
+	
 	
 });
 
@@ -60,6 +64,7 @@ function getVideoId(event){
 	login_user_id = $('#player').data("login_user_id");
 	console.log(videoId);
 	getVideoInfo(videoId);
+	getComments();
 	startPlayer();
 }
 
@@ -84,6 +89,59 @@ function getVideoInfo(videoId)
 		$('#description').html(data.items[0].snippet.description);
 	});
 };
+
+//コメントをAjaxでとってくる
+function getComments(){
+	console.log(videoId);
+	if(login_user_id==null){
+		$.ajax({
+			url:"/cake3youtube/comments/commentsajax",
+			type: "POST",
+			data: {
+				'v_code' : videoId,
+			},
+			dataType:"json",
+			success:writeComments
+		});
+	}else{
+		$.ajax({
+			url:"/cake3youtube/admin/comments/commentsajax",
+			type: "POST",
+			data: {
+				'v_code' : videoId,
+			},
+			dataType:"json",
+			success:writeComments
+		});
+	}
+}
+// とってきたら書き込む
+function writeComments(data){
+	console.log(data);
+	$("#comments").text('');
+	for(var i in data){
+		$("#comments").append(
+				"<div id=comment><p>" + data[i].body + "</p>" +
+				"<p>" + data[i].user.name + "</p><p>" + data[i].created + "</p>" +
+				"</div>");
+	}
+	$("#comments").show();
+}
+//コメントが投稿されたら発動
+function addComment(event){
+	var body =  $('#addComment [name=body]').val();
+	$.ajax({
+		url:"/cake3youtube/admin/comments/addajax",
+		type: "POST",
+		data: {
+			'body':body,
+			'v_code':videoId,
+		},
+		dataType:"json"
+	});
+	$("#comments").hide();
+	getComments();
+}
 function adminPlaylistFormInit(){
 	$('#message').remove();
 	$('.help-block').remove();
