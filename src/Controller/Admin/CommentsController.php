@@ -17,7 +17,7 @@ class CommentsController extends AppController {
 			$video = $this->Comments->Videos->find ()->where ( [ 
 					'v_code' => $v_code 
 			] );
-			if (empty ( $video )) {
+			if (! ($video->id)) {
 				$new_video = $this->Comments->Videos->newEntity ();
 				$new_video ['v_code'] = $v_code;
 				if ($this->Comments->Videos->save ( $new_video )) {
@@ -37,8 +37,6 @@ class CommentsController extends AppController {
 	}
 	public function commentsajax() {
 		$this->autoRender = false;
-		
-		// dump($this->request->data);exit;
 		
 		if ($this->request->is ( [ 
 				'ajax' 
