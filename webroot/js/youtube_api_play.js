@@ -20,9 +20,6 @@ var player;
 function addToMyplaylist(event){
 	adminPlaylistFormInit()
 	var playlist_id = $('#addVideo [name=playlist_id]').val();
-	console.log(playlist_id);
-	console.log(title);
-	console.log(videoId);
 	$.ajax({
 		url:"/cake3youtube/admin/playlist-videos/addajax",
 		type: "POST",
@@ -64,7 +61,6 @@ $(function() {
 function getVideoId(event){
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
-	console.log(videoId);
 	getVideoInfo(videoId);
 	getComments();
 	startPlayer();
