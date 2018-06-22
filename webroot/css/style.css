@@ -129,7 +129,7 @@ table.index{
 }
 #sortable-table1 {
 	width: 50%;
-	border-collapse: collapse;
+
 }
 #sortable-table1 td, #sortable-table1 th {
 	border: solid 1px black;
@@ -169,5 +169,6 @@ table.index{
 #inu{
 	margin: 10px;
 	float: left;
-	width: 5px;
+	width: 100px;
+	font-size: 30px;
 }
