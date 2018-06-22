@@ -53,10 +53,11 @@ class MylistsController extends AppController
 	}
 	public function delete()
 	{
-		//dump($this->request->data);
+		dump($this->request->data);
 		$v_codes = $this->request->data['v_code'];
 		$mylist_delete = TableRegistry::get('Playlists');
 		$playlist_id = $this->request->data['playlist_id'];
+		//dump('$playlist_id');exit;
 		if($this->request->is('post')){
 			foreach($v_codes as $v_code){
 				$mylist_delete->PlaylistVideos->deleteAll([

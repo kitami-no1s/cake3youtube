@@ -14,7 +14,7 @@
 		<th></th>
 		<th>削除</th>
 	</tr>
-<?= $this->Form->create('Mylists') ?>
+<?= $this->Form->create('Mylists',['id'=>'form']) ?>
 <?= $this->Form->hidden('playlist_id',['default'=>$playlist_title->id]) ?>
 <?php foreach($playlist_videos as $playlist_video): ?>
 	<tr>
@@ -26,8 +26,7 @@
 	</tr>
 <?php endforeach ?>
 <?= $this->Form->button("削除") ?>
-<input type="hidden" id="result" name="result" />
-<?= $this->Form->button("並び替え",['id' => 'submit']) ?>
+<?= $this->Form->button("並び替え") ?>
 <?= $this->Form->end(); ?>
 
 </table>

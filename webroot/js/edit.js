@@ -67,15 +67,20 @@ function showValidationMessage(errors){
 	}
 }
 */
-
 /*
+$(function(){
+	$('#sortable-table1 tbody').sortable();
+});
+*/
+
 $(function(){
 	$('#sortable-table1 tbody').sortable();
 	$("#sort").on('click',arrayVideos);
 	$("#delete").on('click',deleteVideos);
 });
 function deleteVideos(event){
-	$("form").attr("action","cake3youtube/admin/mylists/delete");
+	
+	$("#form").attr("action","/cake3youtube/admin/mylists/delete").submit();
 }
 
 function arrayVideos(event){
@@ -83,4 +88,3 @@ function arrayVideos(event){
      $("#result").val(result);
      $("form").submit();
 }
-*/
