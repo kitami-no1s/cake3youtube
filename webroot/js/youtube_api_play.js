@@ -154,8 +154,8 @@ function writeComments(data){
 	$("#comments").text('');
 	for(var i in data){
 		$("#comments").append(
-				"<div id=comment><p>" + data[i].body + "</p>" +
-				"<p>" + data[i].user.name + "</p><p>" + data[i].created + "</p>" +
+				"<div id=comment><p>投稿者:" + data[i].user.name +  "</p>" +
+				"<p>"+ data[i].body +"</p><p>" + data[i].created + "</p>" +
 				"</div>");
 	}
 	$("#comments").show();

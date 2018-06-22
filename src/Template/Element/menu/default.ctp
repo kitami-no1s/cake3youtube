@@ -1,5 +1,7 @@
 <div class="top">
-		<?=$this->Html->link("YouTube","/playlists/index",["class"=>"navbar-brand"]); ?>
+		<p id="inu">
+		<?=$this->Html->link($this->html->image('inu.png'),['controller'=>'playlists','action'=>'index'],['escape'=>false]); ?>
+		</p>
 			<table>
 				<td><?=$this->Form->create("Videos",['type'=>'get','url'=>['controller'=>'Videos','action'=>'result']]); ?></td>
 				<td><?=$this->Form->input('keyword',['label'=>false,'style'=>'margin-top: 15px']); ?></td>
