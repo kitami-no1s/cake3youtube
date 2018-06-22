@@ -10,7 +10,6 @@
 
 <table "sortable-table1" class="index" id="<?= $playlist_title->id ?>">
 	<tr>
-		<th>曲順</th>
 		<th></th>
 		<th></th>
 		<th>削除</th>
@@ -19,7 +18,6 @@
 <?= $this->Form->hidden('playlist_id',['default'=>$playlist_title->id]) ?>
 <?php foreach($playlist_videos as $playlist_video): ?>
 	<tr>
-		<td><?= h($playlist_video->seq) ?></td>
 		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
 		<td><?= h($playlist_video->title) ?>
 		</td>
