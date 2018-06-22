@@ -59,6 +59,7 @@ $(function() {
 
 // GETで持ってきたvideoIdを取得
 function getVideoId(event){
+	$("#comments").hide();
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	getVideoInfo(videoId);
@@ -138,15 +139,27 @@ function search_related(videoId) {
 // コメントをAjaxでとってくる
 function getComments(){
 	console.log(videoId);
-	$.ajax({
-		url:"/cake3youtube/admin/comments/commentsajax",
-		type: "POST",
-		data: {
-			'v_code' : videoId,
-		},
-		dataType:"json",
-		success:writeComments
-	});
+	if(login_user_id==null){
+		$.ajax({
+			url:"/cake3youtube/comments/commentsajax",
+			type: "POST",
+			data: {
+				'v_code' : videoId,
+			},
+			dataType:"json",
+			success:writeComments
+		});
+	}else{
+		$.ajax({
+			url:"/cake3youtube/admin/comments/commentsajax",
+			type: "POST",
+			data: {
+				'v_code' : videoId,
+			},
+			dataType:"json",
+			success:writeComments
+		});
+	}
 }
 // とってきたら書き込む
 function writeComments(data){
