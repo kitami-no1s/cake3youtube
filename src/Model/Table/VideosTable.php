@@ -13,14 +13,10 @@ class VideosTable extends Table
 	public function initialize(array $config)
 	{
 		parent::initialize($config);
-		$this->table('playlist_videos');
+		$this->table('videos');
 		$this->displayField('id');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
-		$this->belongsTo('Playlists',[
-				'foreignKey'=>'playlist_id',
-				'joinType'=>'INNER'
-		]);
 		$this->hasMany('Comments',[
 				'foreignkey' => 'video_id'
 		]);
@@ -38,7 +34,7 @@ class VideosTable extends Table
 
 	public function buildRules(RulesChecker $rules)
 	{
-		$rules->add($rules->existsIn(['playlist_id'],'Playlists'));
+		$rules->add($rules->existsIn(['video_id'],'Comments'));
 		return $rules;
 	}
 }

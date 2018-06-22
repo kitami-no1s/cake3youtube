@@ -84,7 +84,6 @@ function getVideoInfo(videoId)
 		console.log(data);
 		title = data.items[0].snippet.title;
 		thum = data.items[0].snippet.thumbnails.default.url;
-		v_code = videoId;
  		$('#movie_title').html(title);
 		$('#description').html(data.items[0].snippet.description);
 	});
@@ -145,7 +144,7 @@ function getComments(){
 		url:"/cake3youtube/admin/comments/commentsajax",
 		type: "POST",
 		data: {
-			v_code : videoId,
+			'v_code' : videoId,
 		},
 		dataType:"json",
 		success:writeComments
@@ -169,7 +168,7 @@ function addComment(event){
 		type: "POST",
 		data: {
 			'body':body,
-			'v_code':v_code,
+			'v_code':videoId,
 		},
 		dataType:"json",
 		success:getComments
