@@ -134,3 +134,13 @@ table.index{
 #sortable-table1 td, #sortable-table1 th {
 	border: solid 1px black;
 }
+#comments{
+	border: solid 1px #999;
+}
+#comment{
+	margin: 10px;
+	border: solid 1px yellow;
+}
+#comment p{
+	margin:0;
+}

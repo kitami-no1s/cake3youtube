@@ -32,7 +32,6 @@ class CommentsController extends AppController {
 			$comment ['video_id'] = $video->id;
 			$comment ['user_id'] = $login_user_id;
 			if ($this->Comments->save ( $comment )) {
-				
 				return;
 			}
 		}
@@ -48,7 +47,9 @@ class CommentsController extends AppController {
 					'Users' 
 			] )->where ( [ 
 					'Videos.v_code' => $this->request->data ['v_code'] 
-			] );
+			] )->order([
+					'Comments.created' => "DESC"
+			]);
 			echo json_encode ( $comments );
 			return;
 		}

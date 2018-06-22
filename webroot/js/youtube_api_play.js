@@ -62,8 +62,8 @@ function getVideoId(event){
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	getVideoInfo(videoId);
-	getComments();
 	startPlayer();
+	getComments();
 }
 
 function getVideoInfo(videoId)
@@ -151,12 +151,14 @@ function getComments(){
 // とってきたら書き込む
 function writeComments(data){
 	console.log(data);
+	$("#comments").text('');
 	for(var i in data){
 		$("#comments").append(
 				"<div id=comment><p>" + data[i].body + "</p>" +
-				"<p>" + data[i].user.name + "</p><p>" + data[i].create + "</p>" +
+				"<p>" + data[i].user.name + "</p><p>" + data[i].created + "</p>" +
 				"</div>");
 	}
+	$("#comments").show();
 }
 // コメントが投稿されたら発動
 function addComment(event){
@@ -168,9 +170,10 @@ function addComment(event){
 			'body':body,
 			'v_code':videoId,
 		},
-		dataType:"json",
-		success:getComments
+		dataType:"json"
 	});
+	$("#comments").hide();
+	getComments();
 }
 function adminPlaylistFormInit(){
 	$('#message').remove();
