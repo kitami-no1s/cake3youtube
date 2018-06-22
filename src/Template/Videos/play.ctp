@@ -5,6 +5,7 @@
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $video_id ?>"></div>
 		<p id="description"></p>
+	<div id="comments"></div>
 	</div>
 	<div id="related" class="pull-left"></div>
 </div>

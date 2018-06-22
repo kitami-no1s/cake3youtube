@@ -59,6 +59,7 @@ $(function() {
 
 // GETで持ってきたvideoIdを取得
 function getVideoId(event){
+	$("#comments").hide();
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	getVideoInfo(videoId);
