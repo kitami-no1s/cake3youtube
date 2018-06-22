@@ -65,8 +65,10 @@ class MylistsController extends AppController
 			 		'playlist_id' => $playlist_id,
 				]);	
 			}
-			$mylist_delete->PlaylistVideos->updateAll(['seq' => 0])
-				->where(['playlist_id' => $playlist_id]);
+			$mylist_delete->PlaylistVideos->updateAll(['seq' => 0],['playlist_id' => $playlist_id]);
+			$videos = $mylist_delete->PlaylistVideos->find('all')
+						->where(['playlist_id'=>$playlist_id])->count();
+			dump($videos);exit;
 		}
 		return $this->redirect(['action' => 'edit',$this->request->data['playlist_id']]);
 		
