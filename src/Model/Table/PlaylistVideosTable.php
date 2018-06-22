@@ -29,7 +29,8 @@ class PlaylistVideosTable extends Table
 		$validator
 		->integer('id')
 		->allowEmpty('id','create');
-		
+		$validator
+		->integer('seq');
 		
 		$validator
 		->requirePresence('v_code','create')
