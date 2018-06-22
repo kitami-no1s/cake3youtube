@@ -135,12 +135,39 @@ table.index{
 	border: solid 1px black;
 }
 #comments{
-	border: solid 1px #999;
+	
 }
-#comment{
+
+#comment {
+    position: relative;
+    margin: 2em 0 2em 40px;
+    padding: 8px 15px;
+    background: #fff0c6;
+    border-radius: 30px;
+}
+#comment:before{font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 15px;
+    left: -40px;
+    bottom: 0;
+    color: #fff0c6;
+}
+#comment:after{
+    font-family: FontAwesome;
+    content: "\f111";
+    position: absolute;
+    font-size: 23px;
+    left: -23px;
+    bottom: 0;
+    color: #fff0c6;
+}
+#comment p {
+    margin: 0; 
+    padding: 0;
+}
+#inu{
 	margin: 10px;
-	border: solid 1px yellow;
-}
-#comment p{
-	margin:0;
+	float: left;
+	width: 5px;
 }
