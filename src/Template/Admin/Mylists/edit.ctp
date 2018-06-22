@@ -8,13 +8,13 @@
 
 <div id=result></div>
 
-<table "sortable-table1" class="index" id="<?= $playlist_title->id ?>">
+<table id="sortable-table1" class="index" id="<?= $playlist_title->id ?>">
 	<tr>
 		<th></th>
 		<th></th>
 		<th>削除</th>
 	</tr>
-<?= $this->Form->create('Mylists',['url'=>['action'=>'delete']]) ?>
+<?= $this->Form->create('Mylists') ?>
 <?= $this->Form->hidden('playlist_id',['default'=>$playlist_title->id]) ?>
 <?php foreach($playlist_videos as $playlist_video): ?>
 	<tr>
@@ -26,6 +26,8 @@
 	</tr>
 <?php endforeach ?>
 <?= $this->Form->button("削除") ?>
+<input type="hidden" id="result" name="result" />
+<?= $this->Form->button("並び替え",['id' => 'submit']) ?>
 <?= $this->Form->end(); ?>
 
 </table>

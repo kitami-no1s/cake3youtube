@@ -23,7 +23,7 @@ class MylistsController extends AppController
 		$mylist_add = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
 		$playlist = $mylist_add->newEntity();
-		$playlist->user_id=$login_user_id;
+		$playlist->user_id = $login_user_id;
 		if($this->request->is('post')){
 			$playlist = $mylist_add->patchEntity($playlist,$this->request->data);
 			if($mylist_add->save($playlist)){
@@ -39,8 +39,7 @@ class MylistsController extends AppController
 	{
 		$mylist_edit = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
-		try{
-			$mylist_edit->user_id=$login_user_id;
+		try{			
 			$playlist_videos = $mylist_edit->PlaylistVideos->find()->where([
 										'playlist_id'=>$playlist_id,
 								]);
