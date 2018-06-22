@@ -21,6 +21,8 @@ function addToMyplaylist(event){
 	adminPlaylistFormInit()
 	var playlist_id = $('#addVideo [name=playlist_id]').val();
 	console.log(playlist_id);
+	console.log(title);
+	console.log(videoId);
 	$.ajax({
 		url:"/cake3youtube/admin/playlist-videos/addajax",
 		type: "POST",
@@ -28,7 +30,7 @@ function addToMyplaylist(event){
 			playlist_id : playlist_id,
 			title : title,
 			thum : thum,
-			v_code : v_code
+			v_code : videoId
 		},
 		dataType:"json",
 		success:adminAddVideoSuccess,

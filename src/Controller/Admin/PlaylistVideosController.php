@@ -9,7 +9,6 @@ class PlaylistVideosController extends AppController
 	public function addajax(){
 		$this->autoRender = false;
 		$result = [ ];
-		
 		if ($this->request->is ( [
 				'ajax'
 		] )) {
@@ -27,7 +26,7 @@ class PlaylistVideosController extends AppController
 					echo json_encode ( $result );
 					return;
 				}
-					$result ['errors'] = $order->errors ();
+					$result ['errors'] = $playlist_video->errors ();
 			}
 					$result ['status'] = "error";
 					echo json_encode ( $result );
