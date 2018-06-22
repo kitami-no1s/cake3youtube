@@ -21,7 +21,7 @@
 		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
 		<td><?= h($playlist_video->title) ?>
 		</td>
-		<td><?= $this->Form->input("v_code",["type"=>"checkbox","name"=>"v_code[]","value"=>$playlist_video->v_code]) ?>
+		<td><?= $this->Form->input("v_code",["label"=>"","type"=>"checkbox","name"=>"v_code[]","value"=>$playlist_video->v_code]) ?>
 		</td>
 	</tr>
 <?php endforeach ?>
