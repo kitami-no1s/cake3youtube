@@ -38,12 +38,15 @@ class MylistsController extends AppController
 	public function edit($playlist_id = null)
 	{
 		$mylist_edit = TableRegistry::get('Playlists');
+		$login_user_id = $this->MyAuth->user("id");
 		try{
-			$playlist_videos = $mylist_edit->PlaylistVideos->find()->where(['playlist_id'=>$playlist_id
-			]);
+			$mylist_edit->user_id=$login_user_id;
+			$playlist_videos = $mylist_edit->PlaylistVideos->find()->where([
+										'playlist_id'=>$playlist_id,
+								]);
 			$playlist_title = $mylist_edit->get($playlist_id);
 		} catch(\Exception $e){
-			$this->Flash->error(__('プレイリストが存在しません'));
+			$this->Flash->error(__('エラーが発生しました'));
 			return $this->redirect(['action' => 'index']);
 		}
 		$this->set(compact('playlist_videos','playlist_title'));
@@ -54,15 +57,18 @@ class MylistsController extends AppController
 		
 		$v_codes = $this->request->data['v_code'];
 		$mylist_delete = TableRegistry::get('Playlists');
+		$playlist_id = $this->request->data['playlist_id'];
 		if($this->request->is('post')){
 			foreach($v_codes as $v_code){
 				$mylist_delete->PlaylistVideos->deleteAll([
-					'v_code'=>$v_code,
-			 		'playlist_id'=>$this->request->data['playlist_id']
-				]);
+					'v_code' => $v_code,
+			 		'playlist_id' => $playlist_id,
+				]);	
 			}
+			$mylist_delete->PlaylistVideos->updateAll(['seq' => 0])
+				->where(['playlist_id' => $playlist_id]);
 		}
-		return $this->redirect(['action' => 'index']);
+		return $this->redirect(['action' => 'edit',$this->request->data['playlist_id']]);
 		
 	}
 }

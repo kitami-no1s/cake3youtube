@@ -1,9 +1,14 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<?php $this->prepend('script',$this->Html->script('edit.js')); ?>
 
 <h1 class="page-header" ><?= h($playlist_title->title) ?>の編集</h1>
 
 <div id=result></div>
 
-<table id="sortable-table1" class="index" id="<?= $playlist_title->id ?>">
+<table "sortable-table1" class="index" id="<?= $playlist_title->id ?>">
 	<tr>
 		<th>曲順</th>
 		<th></th>

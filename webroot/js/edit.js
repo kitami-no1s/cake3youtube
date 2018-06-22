@@ -1,4 +1,6 @@
-$(function(){
+/*
+ * 
+ *$(function(){
 	$("#button").on('click',adminVideoDeleteRequest);
 });
 function adminVideoDeleteRequest(event){
@@ -64,6 +66,7 @@ function showValidationMessage(errors){
 		}
 	}
 }
+*/
 $(function(){
 	$('#sortable-table1 tbody').sortable();
 });
