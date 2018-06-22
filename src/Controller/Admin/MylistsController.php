@@ -53,7 +53,7 @@ class MylistsController extends AppController
 	}
 	public function delete()
 	{
-		
+		//dump($this->request->data);
 		$v_codes = $this->request->data['v_code'];
 		$mylist_delete = TableRegistry::get('Playlists');
 		$playlist_id = $this->request->data['playlist_id'];
@@ -68,4 +68,5 @@ class MylistsController extends AppController
 		return $this->redirect(['action' => 'edit',$this->request->data['playlist_id']]);
 		
 	}
+	
 }

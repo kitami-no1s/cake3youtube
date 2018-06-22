@@ -67,6 +67,20 @@ function showValidationMessage(errors){
 	}
 }
 */
+
+/*
 $(function(){
 	$('#sortable-table1 tbody').sortable();
+	$("#sort").on('click',arrayVideos);
+	$("#delete").on('click',deleteVideos);
 });
+function deleteVideos(event){
+	$("form").attr("action","cake3youtube/admin/mylists/delete");
+}
+
+function arrayVideos(event){
+	 var result = $("#sortable-table1 tbody").sortable("toArray");
+     $("#result").val(result);
+     $("form").submit();
+}
+*/
