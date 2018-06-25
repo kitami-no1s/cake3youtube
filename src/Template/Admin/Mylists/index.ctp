@@ -16,7 +16,7 @@
 		<td><?= h($mylist->title) ?></td>
 		<td><?= h($mylist->modified) ?></td>
 		<td><?= $this->Html->link("編集",["action" => "edit",$mylist->id]) ?>
-			<?= $this->Html->link("削除",['action'=>'delete',$mylist->id]) ?>
+			<?= $this->Html->link("削除",['action'=>'deletemylist',$mylist->id]) ?>
 		</td>
 	</tr>
 	<?php endforeach; ?>

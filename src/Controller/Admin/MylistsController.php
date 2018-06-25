@@ -40,7 +40,7 @@ class MylistsController extends AppController
 	{
 		$mylist_edit = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
-		try{			
+		try{
 			$playlist_videos = $mylist_edit->PlaylistVideos->find()->where([
 										'playlist_id'=>$playlist_id,
 								]);
@@ -51,6 +51,21 @@ class MylistsController extends AppController
 		}
 		$this->set(compact('playlist_videos','playlist_title'));
 		
+	}
+	public function deletemylist($playlist_id = null)
+	{
+		$mylist_delete = TableRegistry::get('Playlists');
+		$login_user_id = $this->MyAuth->user("id");
+		$entity = $mylist_delete->find()
+			->where(['user_id' => $login_user_id,'id' => $playlist_id])
+			->first();
+		if(empty($entity)){
+			$this->Flash->error(__('マイプレイリストのみが削除可能です'));
+			return $this->redirect(['action' => 'index']);
+		}
+		$mylist_delete->delete($entity);
+		$this->Flash->success(__('プレイリストを削除しました'));
+		return $this->redirect(['action' => 'index']);
 	}
 	public function delete()
 	{
