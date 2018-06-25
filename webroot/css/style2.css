@@ -117,3 +117,10 @@ body {
 	opacity: 0.5;
 	z-index: 9999;
 }
+#indexplaylist{
+    padding: 0.2em 0.5em;
+    margin: 2em 0;
+    background: #d6ebff;
+    box-shadow: 0px 0px 0px 10px #d6ebff;
+    border: dashed 2px white;
+}

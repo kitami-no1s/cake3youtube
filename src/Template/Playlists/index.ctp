@@ -1,5 +1,5 @@
 <h2 class="page-header">公開されているプレイリスト一覧</h2>
-<table class="table table-striped" cellpadding="0" cellspacing="0">
+<table class="table table-striped" cellpadding="0" cellspacing="0" id="indexplaylist">
 	<?php foreach($playlists as $playlist): ?>
 	<?php if($playlist->public == 1): ?>
 	<tr>
