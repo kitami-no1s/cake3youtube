@@ -1,8 +1,8 @@
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<?=$this->Html->link("DogSearch",
-['controller'=>'playlists','action'=>'index'],["class"=>"navbar-brand"]); ?>
+['controller'=>'playlists','action'=>'index'],["class"=>"navbar-brand","id"=>"header"]); ?>
 		</div>
 		<?=$this->Form->create("Videos",
 ['type'=>'get','url'=>['controller'=>'Videos','action'=>'result'],'class'=>"navbar-form navbar-left"]); ?>

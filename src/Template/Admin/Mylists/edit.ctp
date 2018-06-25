@@ -16,7 +16,7 @@
 		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
 		<td><?= h($playlist_video->title) ?>
 		</td>
-		<td><?= $this->Form->input("v_code",["type"=>"checkbox","name"=>"v_codes[]","value"=>$playlist_video->v_code]) ?>
+		<td><?= $this->Form->input("削除",["type"=>"checkbox","name"=>"v_codes[]","value"=>$playlist_video->v_code]) ?>
 		</td>
 	</tr>
 	
