@@ -1,7 +1,7 @@
 <?php
 //独自CSS
 $this->prepend('css',$this->Html->css([
-	'style.css'
+	'style2.css'
 ]));
 //BootstrapをCDNから取得
 $this->prepend('css',$this->Html->css([

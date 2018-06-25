@@ -1,21 +1,30 @@
-<div class="top">
-		<?=$this->Html->link("YouTube","/admin/playlists/index",["class"=>"navbar-brand"]); ?>
-			<table>
-				<td><?=$this->Form->create("Videos",['type'=>'get','url'=>['controller'=>'Videos','action'=>'result']]); ?></td>
-				<td><?=$this->Form->input('keyword',['label'=>false,'style'=>'margin-top: 15px']); ?></td>
-				<td><?=$this->Form->button("検索"); ?></td>
-				<td><?=$this->Form->end(); ?></td>
-			</table>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<?=$this->Html->link("DogSearch",
+['controller'=>'playlists','action'=>'index'],["class"=>"navbar-brand"]); ?>
+		</div>
+		<?=$this->Form->create("Videos",
+['type'=>'get','url'=>['controller'=>'Videos','action'=>'result'],'class'=>"navbar-form navbar-left"]); ?>
+		<div class="form-group">
+			<?=$this->Form->input('keyword',['label'=>false,'class'=>"form-control"]); ?>
+		</div>
+			<?=$this->Form->button('検索',['type'=>'submit','id'=>'btn','class'=>'btn btn-info']); ?>
+			<?=$this->Form->end(); ?>
+		<div>
+			<ul class="nav navbar-nav navbar-right">
 			<p class="navbar-text">ようこそ、<?=$auth["email"]; ?></p>
-
-			<div id="login-menu">
-			<p><?=$this->Html->link("マイプレイリスト","/admin/mylists/index");?></p>	
-				<div class="dropdown">
-					<?= $this->Html->link("管理","#",["data-toggle"=>"dropdown"]); ?>
+				<li class="dropdown">
+					<?= $this->Html->link("マイプレイリスト","/admin/mylists/index"); ?>
+				</li>
+				<li class="dropdown">
+					<?=$this->Html->link("ユーザー管理","#",["data-toggle"=>"dropdown"]);?>
 					<div class="dropdown-menu">
-						<p><?=$this->Html->link("ユーザ編集","/admin/users/edit")?></li>
-						<p><?=$this->Html->link("ログアウト","/admin/users/logout")?></li>
+						<ul><?=$this->Html->link("ユーザ編集","/admin/users/edit")?></ul>
+						<ul><?=$this->Html->link("ログアウト","/admin/users/logout")?></ul>
 					</div>
-				</div>
-			</div>
+				</li>
+			</ul>
+		</div>	
+	</div>
 </div>
