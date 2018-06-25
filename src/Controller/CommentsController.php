@@ -17,8 +17,14 @@ class CommentsController extends AppController
 					'Videos.v_code' => $this->request->data ['v_code']
 			] )->order([
 					'Comments.created' => "DESC"
-			]);
-			echo json_encode ( $comments );
+			])->all();
+			//dump($comments);
+			//exit;
+			$result = [];
+			$result["status"] = "success";
+			$result["comments"] =  $comments;
+			echo json_encode ( $result );
+			exit;
 			return;
 		}
 	}

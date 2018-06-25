@@ -9,6 +9,7 @@ class CommentsController extends AppController {
 	public function addajax() {
 		$this->autoRender = false;
 		$login_user_id = $this->MyAuth->user ( "id" );
+		$status = [ ];
 		if ($this->request->is ( [ 
 				'ajax' 
 		] )) {
@@ -32,13 +33,18 @@ class CommentsController extends AppController {
 			$comment ['video_id'] = $video->id;
 			$comment ['user_id'] = $login_user_id;
 			if ($this->Comments->save ( $comment )) {
+				$result ['status'] = 'success';
+				echo json_encode ( $result );
 				return;
 			}
+			$result ['status'] = 'error';
+			echo json_encode ( $result );
+			return;
 		}
 	}
 	public function commentsajax() {
 		$this->autoRender = false;
-		
+		$status = [ ];
 		if ($this->request->is ( [ 
 				'ajax' 
 		] )) {
@@ -47,10 +53,17 @@ class CommentsController extends AppController {
 					'Users' 
 			] )->where ( [ 
 					'Videos.v_code' => $this->request->data ['v_code'] 
-			] )->order([
-					'Comments.created' => "DESC"
-			]);
-			echo json_encode ( $comments );
+			] )->order ( [ 
+					'Comments.created' => "DESC" 
+			] )
+			->hydrate(false)->toArray();
+			//dump($comments);
+			//exit;
+			$result = [];
+			$result["status"] = "success";
+			$result["comments"] =  $comments;
+			echo json_encode ( $result );
+			exit;
 			return;
 		}
 	}

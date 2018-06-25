@@ -51,6 +51,8 @@ function onPlayerReady(event){
 
 // 画面がロードされたら作動
 $(function() {
+	$('#loading').fadeIn();
+	$('#main_box').hide();
 	$(window).on('load', getVideoId);
 	$('#addVideoButton').on('click',addToMyplaylist);
 	$('#addCommentButton').on('click',addComment);
@@ -59,7 +61,6 @@ $(function() {
 
 // GETで持ってきたvideoIdを取得
 function getVideoId(event){
-	$("#comments").hide();
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	getVideoInfo(videoId);
@@ -135,6 +136,8 @@ function search_related(videoId) {
 			}
 		}
 	});
+	$('#main_box').show();
+	$('#loading').fadeOut();
 }
 // コメントをAjaxでとってくる
 function getComments(){
@@ -147,7 +150,8 @@ function getComments(){
 				'v_code' : videoId,
 			},
 			dataType:"json",
-			success:writeComments
+			success:writeComments,
+			error:adminAddVideoError
 		});
 	}else{
 		$.ajax({
@@ -157,7 +161,8 @@ function getComments(){
 				'v_code' : videoId,
 			},
 			dataType:"json",
-			success:writeComments
+			success:writeComments,
+			error:adminAddVideoError
 		});
 	}
 }
@@ -165,13 +170,13 @@ function getComments(){
 function writeComments(data){
 	console.log(data);
 	$("#comments").text('');
-	for(var i in data){
+	for(var i in data['comments']){
 		$("#comments").append(
-				"<div id=comment><p>投稿者:" + data[i].user.name +  "</p>" +
-				"<p>"+ data[i].body +"</p><p>" + data[i].created + "</p>" +
+				"<div id=comment><p>投稿者:" + data['comments'][i].user.name +  "</p>" +
+				"<p>"+ data['comments'][i].body +"</p><p>" + data['comments'][i].created + "</p>" +
 				"</div>");
 	}
-	$("#comments").show();
+	
 }
 // コメントが投稿されたら発動
 function addComment(event){
@@ -184,10 +189,10 @@ function addComment(event){
 			'body':body,
 			'v_code':videoId,
 		},
-		dataType:"json"
+		dataType:"json",
+		success:getComments,
+		error: adminAddVideoError
 	});
-	$("#comments").hide();
-	getComments();
 }
 function adminPlaylistFormInit(){
 	$('#message').remove();
