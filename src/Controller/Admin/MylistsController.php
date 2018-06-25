@@ -41,10 +41,14 @@ class MylistsController extends AppController
 		$mylist_edit = TableRegistry::get('Playlists');
 		$login_user_id = $this->MyAuth->user("id");
 		try{
+			$playlist_title = $mylist_edit->get($playlist_id);
+			if($playlist_title->user_id !== $login_user_id){
+				$this->Flash->error(__('マイプレイリストのみが編集可能です'));
+				return $this->redirect(['action' => 'index']);
+			}
 			$playlist_videos = $mylist_edit->PlaylistVideos->find()->where([
 										'playlist_id'=>$playlist_id,
 								]);
-			$playlist_title = $mylist_edit->get($playlist_id);
 		} catch(\Exception $e){
 			$this->Flash->error(__('エラーが発生しました'));
 			return $this->redirect(['action' => 'index']);

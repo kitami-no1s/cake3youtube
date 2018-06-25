@@ -16,14 +16,18 @@ class PlaylistsController extends AppController
 	public function view($playlist_id = null)
 	{
 		try{
+			$playlist = $this->Playlists->get($playlist_id);
+			if($playlist->public == 0){
+				$this->Flash->error(__('非公開のプレイリストです'));
+				return $this->redirect(['action' => 'index']);
+			}
 			$playlist_videos = $this->Playlists->PlaylistVideos->find()->where(['playlist_id'=>$playlist_id
 			]);
-			$playlist_title = $this->Playlists->get($playlist_id);
 		} catch(\Exception $e){
 			$this->Flash->error(__('プレイリストが存在しません'));
 			return $this->redirect(['action' => 'index']);
 		}
-		$this->set(compact('playlist_videos','playlist_title'));
+		$this->set(compact('playlist_videos','playlist'));
 	}
 	public function play($playlist_id=null, $v_code=null)
 	{
