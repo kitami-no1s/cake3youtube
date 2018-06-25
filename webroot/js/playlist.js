@@ -86,7 +86,7 @@ function getVideoInfo(videoId)
 		thum = data.items[0].snippet.thumbnails.default.url;
 		v_code = videoId;
  		$('#movie_title').html(title);
-		$('#description').html(data.items[0].snippet.description);
+		$('.description').html(data.items[0].snippet.description);
 	});
 };
 
@@ -101,7 +101,8 @@ function getComments(){
 				'v_code' : videoId,
 			},
 			dataType:"json",
-			success:writeComments
+			success:writeComments,
+			error:adminAddVideoError
 		});
 	}else{
 		$.ajax({
@@ -111,7 +112,8 @@ function getComments(){
 				'v_code' : videoId,
 			},
 			dataType:"json",
-			success:writeComments
+			success:writeComments,
+			error:adminAddVideoError
 		});
 	}
 }
@@ -138,10 +140,9 @@ function addComment(event){
 			'body':body,
 			'v_code':videoId,
 		},
-		dataType:"json"
+		dataType:"json",
+		success:getComments
 	});
-	$("#comments").hide();
-	getComments();
 }
 function adminPlaylistFormInit(){
 	$('#message').remove();

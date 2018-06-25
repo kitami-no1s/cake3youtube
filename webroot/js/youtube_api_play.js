@@ -85,7 +85,7 @@ function getVideoInfo(videoId)
 		title = data.items[0].snippet.title;
 		thum = data.items[0].snippet.thumbnails.default.url;
  		$('#movie_title').html(title);
-		$('#description').html(data.items[0].snippet.description);
+		$('.description').html(data.items[0].snippet.description);
 	});
 	search_related(videoId);
 	

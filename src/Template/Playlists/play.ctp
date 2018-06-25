@@ -4,7 +4,7 @@
 		<div id="movie_title"></div>
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $v_code ?>"></div>
-		<p id="description"></p>
+		<p class="description"></p>
 	<div id="comments"></div>
 	</div>
 	<div id="related" class="pull-left">
@@ -18,7 +18,7 @@
 		<td class="details"> 
 		<a href="http://localhost/cake3youtube/playlists/play/<?= $video->playlist_id ?>/<?= $video->v_code ?>
 		"><?= $video->title ?></a><br/>
-		<span class="description"></span>
+		
 		</td>
 		</tr>
 	<?php endforeach; ?>

@@ -4,7 +4,7 @@
 		<div id="movie_title"></div>
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $v_code ?>" data-login_user_id = "<?= $login_user_id ?>"></div>
-		<p id="description"></p>
+		<p class="description"></p>
 		<div>
 			<?= $this->Form->create("Comments",[
 				"id"=>"addComment"
@@ -26,7 +26,7 @@
 		<td class="details"> 
 		<a href="http://localhost/cake3youtube/playlists/play/<?= $video->playlist_id ?>/<?= $video->v_code ?>
 		"><?= $video->title ?></a><br/>
-		<span class="description"></span>
+		
 		</td>
 		</tr>
 	<?php endforeach; ?>
