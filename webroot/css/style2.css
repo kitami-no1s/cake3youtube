@@ -82,7 +82,7 @@ body{
 #sortable-table1 td, #sortable-table1 th {
 	border: solid 1px black;
 }
- #loading{
+#loading{
  	display: none;
  	position: fixed;
  	top: 0;
