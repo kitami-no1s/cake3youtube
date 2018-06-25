@@ -176,6 +176,7 @@ function writeComments(data){
 // コメントが投稿されたら発動
 function addComment(event){
 	var body =  $('#addComment [name=body]').val();
+	$('#addComment [name=body]').val('');
 	$.ajax({
 		url:"/cake3youtube/admin/comments/addajax",
 		type: "POST",
