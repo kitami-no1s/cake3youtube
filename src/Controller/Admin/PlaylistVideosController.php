@@ -30,10 +30,14 @@ class PlaylistVideosController extends AppController {
 					'playlist_id' => $this->request->data ['playlist_id'] 
 			] )->count ();
 			if (empty ( $video )) {
-				$this->PlaylistVideos->save ( $playlist_video );
-				$result ['status'] = 'success';
-				echo json_encode ( $result );
-				return;
+				if($this->PlaylistVideos->save ( $playlist_video )){;
+					$result ['status'] = 'success';
+					echo json_encode ( $result );
+					return;
+				}else{
+					$result ['status'] = "error";
+					echo json_encode ( $result );
+				}
 			}
 			$result ['errors'] = $playlist_video->errors ();
 		}

@@ -12,7 +12,7 @@
 		<div id="movie_title"></div>
 		<!-- <iframe>(とプレイヤ)に置き換わる<div>タグ -->
 		<div id="player" data-video_id="<?= $video_id ?>" data-login_user_id = "<?= $login_user_id ?>"></div>
-		<p id="description"></p>
+		<p class="description"></p>
 		<div>
 		<?= $this->Form->create("Comments",[
 			"id"=>"addComment"

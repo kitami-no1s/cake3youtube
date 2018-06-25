@@ -1,13 +1,13 @@
 //ビデオID
 var videoId;
-//再生中の動画のタイトル
-//ログインしているユーザのid
+// 再生中の動画のタイトル
+// ログインしているユーザのid
 var login_user_id;
 var title;
-//再生中の動画のサムネ
+// 再生中の動画のサムネ
 var thum;
 var apiKey = 'AIzaSyDkQYaQ7QLoV_RG2ltkPvsptAsvATJXwD8';
-//Iframe Player APIを非同期にロード
+// Iframe Player APIを非同期にロード
 var tag = document.createElement('script');
 tag.src = 'http://www.youtube.com/player_api';
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -44,12 +44,12 @@ function startPlayer(){
 		}
 	});
 }
-//プレイヤが準備できたら呼び出される
+// プレイヤが準備できたら呼び出される
 function onPlayerReady(event){
 	event.target.playVideo();
 }
 
-//画面がロードされたら作動
+// 画面がロードされたら作動
 $(function() {
 	$(window).on('load', getVideoId);
 	$('#addVideoButton').on('click',addToMyplaylist);
@@ -58,7 +58,7 @@ $(function() {
 	
 });
 
-//GETで持ってきたvideoIdを取得
+// GETで持ってきたvideoIdを取得
 function getVideoId(event){
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
@@ -86,11 +86,11 @@ function getVideoInfo(videoId)
 		thum = data.items[0].snippet.thumbnails.default.url;
 		v_code = videoId;
  		$('#movie_title').html(title);
-		$('#description').html(data.items[0].snippet.description);
+		$('.description').html(data.items[0].snippet.description);
 	});
 };
 
-//コメントをAjaxでとってくる
+// コメントをAjaxでとってくる
 function getComments(){
 	console.log(videoId);
 	if(login_user_id==null){
@@ -101,7 +101,8 @@ function getComments(){
 				'v_code' : videoId,
 			},
 			dataType:"json",
-			success:writeComments
+			success:writeComments,
+			error:adminAddVideoError
 		});
 	}else{
 		$.ajax({
@@ -111,7 +112,8 @@ function getComments(){
 				'v_code' : videoId,
 			},
 			dataType:"json",
-			success:writeComments
+			success:writeComments,
+			error:adminAddVideoError
 		});
 	}
 }
@@ -127,7 +129,7 @@ function writeComments(data){
 	}
 	
 }
-//コメントが投稿されたら発動
+// コメントが投稿されたら発動
 function addComment(event){
 	var body =  $('#addComment [name=body]').val();
 	$('#addComment [name=body]').val('');
@@ -138,10 +140,9 @@ function addComment(event){
 			'body':body,
 			'v_code':videoId,
 		},
-		dataType:"json"
+		dataType:"json",
+		success:getComments
 	});
-	$("#comments").hide();
-	getComments();
 }
 function adminPlaylistFormInit(){
 	$('#message').remove();
