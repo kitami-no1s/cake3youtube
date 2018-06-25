@@ -1,4 +1,4 @@
-<h1 class="page-header" ><?= h($playlist_title->title) ?></h1>
+<h1 class="page-header" ><?= h($playlist->title) ?></h1>
 <div id=result></div>
 <table class="table table-striped" cellpadding="0" cellspacing="0">
 <?php foreach($playlist_videos as $playlist_video): ?>
