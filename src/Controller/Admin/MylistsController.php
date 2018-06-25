@@ -24,6 +24,7 @@ class MylistsController extends AppController
 		$login_user_id = $this->MyAuth->user("id");
 		$playlist = $mylist_add->newEntity();
 		$playlist->user_id = $login_user_id;
+		//カテゴリ新規作成
 		if($this->request->is('post')){
 			$playlist = $mylist_add->patchEntity($playlist,$this->request->data);
 			if($mylist_add->save($playlist)){
@@ -53,21 +54,47 @@ class MylistsController extends AppController
 	}
 	public function delete()
 	{
-		dump($this->request->data);
-		$v_codes = $this->request->data['v_code'];
 		$mylist_delete = TableRegistry::get('Playlists');
+		//checkの入ったv_codeの配列
+		$v_codes = $this->request->data['v_codes'];
 		$playlist_id = $this->request->data['playlist_id'];
-		//dump('$playlist_id');exit;
 		if($this->request->is('post')){
-			foreach($v_codes as $v_code){
-				$mylist_delete->PlaylistVideos->deleteAll([
-					'v_code' => $v_code,
-			 		'playlist_id' => $playlist_id,
-				]);	
-			}			
+			if(isset($this->request->data["delete"])){
+				//v_codeを削除
+				foreach($v_codes as $v_code){
+					$mylist_delete->PlaylistVideos->deleteAll([
+						'v_code' => $v_code,
+				 		'playlist_id' => $playlist_id,
+					]);	
+				}			
+			}
 		}
 		return $this->redirect(['action' => 'edit',$this->request->data['playlist_id']]);
+	}
+	public function sortajax()
+	{
+		$mylist_sort = TableRegistry::get('PlaylistVideos');
 		
+		$this->autoRender = FALSE;
+		$result = [ ];
+		//並び替えた順番のid配列
+ 		$video_ids = $this->request->data['id'];
+		$playlist_id = $this->request->data['playlist_id'];
+		if ($this->request->is ( [ 'ajax'] )) {
+			//seqを1からインクリメント
+			$index = 1;
+			foreach($video_ids as $video_id){
+				$sort_video = $mylist_sort->query()->update()->set(['seq' => $index ])
+							->where(['id'=>$video_id])
+							->andwhere(['playlist_id'=>$playlist_id])->execute();
+				$index++;
+			}
+			$result ['status'] = "success";			
+			echo json_encode ( $result );
+			return;
+		}
+		$result ['status'] = 'error';
+		echo json_encode ( $result );
 	}
 	
 }
