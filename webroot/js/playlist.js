@@ -119,17 +119,18 @@ function getComments(){
 function writeComments(data){
 	console.log(data);
 	$("#comments").text('');
-	for(var i in data){
+	for(var i in data['comments']){
 		$("#comments").append(
-				"<div id=comment><p>" + data[i].body + "</p>" +
-				"<p>" + data[i].user.name + "</p><p>" + data[i].created + "</p>" +
+				"<div id=comment><p>投稿者:" + data['comments'][i].user.name +  "</p>" +
+				"<p>"+ data['comments'][i].body +"</p><p>" + data['comments'][i].created + "</p>" +
 				"</div>");
 	}
-	$("#comments").show();
+	
 }
 //コメントが投稿されたら発動
 function addComment(event){
 	var body =  $('#addComment [name=body]').val();
+	$('#addComment [name=body]').val('');
 	$.ajax({
 		url:"/cake3youtube/admin/comments/addajax",
 		type: "POST",
