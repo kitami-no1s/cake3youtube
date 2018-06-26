@@ -24,7 +24,7 @@
 		<img src="<?= $video->thum ?>" width="200px"/>
 		</td>
 		<td class="details"> 
-		<a href="http://localhost/cake3youtube/playlists/play/<?= $video->playlist_id ?>/<?= $video->v_code ?>
+		<a href="http://localhost/cake3youtube/admin/playlists/play/<?= $video->playlist_id ?>/<?= $video->v_code ?>
 		"><?= $video->title ?></a><br/>
 		
 		</td>
