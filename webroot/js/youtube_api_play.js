@@ -18,6 +18,7 @@ firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
 var player;
 
 function addToMyplaylist(event){
+	$('#addVideoButton').attr('disabled',true);
 	adminPlaylistFormInit()
 	var playlist_id = $('#addVideo [name=playlist_id]').val();
 	$.ajax({
@@ -198,6 +199,7 @@ function adminAddVideoSuccess(result){
 	}else{
 		showErrorMessage("お気に入り追加に失敗しました");
 		showValidationMessage(result['errors']);
+		
 	}
 }
 
@@ -210,6 +212,7 @@ function showSuccessMessage(message){
 	tag += message;
 	tag += '</div>';
 	$('.main').prepend(tag);
+	$('#addVideoButton').attr('disabled',false);
 }
 
 function showErrorMessage(message){
@@ -217,6 +220,7 @@ function showErrorMessage(message){
 	tag += message;
 	tag += '</div>';
 	$('.main').prepend(tag);
+	$('#addVideoButton').attr('disabled',false);
 }
 
 function showValidationMessage(errors){
@@ -228,5 +232,6 @@ function showValidationMessage(errors){
 			var tag =　'<div class="help-block">' + field[value] + '</div>';
 			obj.after(tag);
 		}
+		$('#addVideoButton').attr('disabled',false);
 	}
 }

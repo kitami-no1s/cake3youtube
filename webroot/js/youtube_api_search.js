@@ -8,7 +8,7 @@ var login_user_id;
 //検索ワード取得
 function getKeyword(event) {
 	$('#result').hide();
-	var keyword = $(".page-header").attr("id");
+	keyword = $(".page-header").attr("id");
 	login_user_id = $(".page-header").data("login_user_id");
 	search(keyword);
 }
