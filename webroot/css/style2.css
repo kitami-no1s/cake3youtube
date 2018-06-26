@@ -104,6 +104,11 @@ body {
 	width: 50%;
 }
 
+#sortable-table1 tr:hover {
+	background: red;
+	cursor: pointer;
+	box-shadow: 10px 10px 10px;
+}
 #sortable-table1 td, #sortable-table1 th {
 	border: solid 1px black;
 }
