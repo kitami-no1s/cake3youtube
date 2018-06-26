@@ -8,7 +8,7 @@ var login_user_id;
 //検索ワード取得
 function getKeyword(event) {
 	$('#result').hide();
-	keyword = $(".page-header").attr("id");
+	var keyword = $(".page-header").attr("id");
 	login_user_id = $(".page-header").data("login_user_id");
 	search(keyword);
 }
@@ -58,7 +58,7 @@ function search(keyword) {
 						'<img src="' + data.items[i].snippet.thumbnails.default.url + '"/>' +
 						'</td>' + '<td class="details">' + 
 						'<a href="http://localhost/cake3youtube/admin/videos/play?videoId='
-						+ data.items[i].id.videoId  +'">'
+						+ data.items[i].id.videoId +'">'
 						+ data.items[i].snippet.title + 
 						'</a><br/>' +
 						'<span class="description">'+ data.items[i].snippet.description + '</span>' +
