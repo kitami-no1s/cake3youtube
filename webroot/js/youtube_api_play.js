@@ -142,7 +142,6 @@ function search_related(videoId) {
 // コメントをAjaxでとってくる
 function getComments(){
 	console.log(videoId);
-	if(login_user_id==null){
 		$.ajax({
 			url:"/cake3youtube/comments/commentsajax",
 			type: "POST",
@@ -153,18 +152,6 @@ function getComments(){
 			success:writeComments,
 			error:adminAddVideoError
 		});
-	}else{
-		$.ajax({
-			url:"/cake3youtube/admin/comments/commentsajax",
-			type: "POST",
-			data: {
-				'v_code' : videoId,
-			},
-			dataType:"json",
-			success:writeComments,
-			error:adminAddVideoError
-		});
-	}
 }
 // とってきたら書き込む
 function writeComments(data){
