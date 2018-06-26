@@ -141,5 +141,8 @@ width: 150px;
 text-align: center;
 }
 #border{
-	border-bottom: inset 10px #ff0000;
+	border-image-source: url("img/yashi.png");
+}
+#main_box{
+	overflow: hidden;
 }
