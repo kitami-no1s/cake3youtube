@@ -134,10 +134,12 @@ function writeComments(data){
 				"<p>"+ data['comments'][i].body +"</p><p>" + data['comments'][i].created + "</p>" +
 				"</div>");
 	}
+	$('#addCommentButton').attr('disabled',false);
 	
 }
 // コメントが投稿されたら発動
 function addComment(event){
+	$('#addCommentButton').attr('disabled',true);
 	var body =  $('#addComment [name=body]').val();
 	$('#addComment [name=body]').val('');
 	$.ajax({
