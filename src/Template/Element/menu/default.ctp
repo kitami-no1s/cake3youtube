@@ -4,7 +4,10 @@
 	      <?=$this->Html->link("DogSearch",'/',["class"=>"navbar-brand","id"=>"header"]); ?>
 	      <?= $this->Html->image('nikukyu.png'); ?>
 		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_target">
-	      </button>
+	        <span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
 	    </div>
 	    <div class="collapse navbar-collapse" id="nav_target">
           <?=$this->Form->create("Videos",

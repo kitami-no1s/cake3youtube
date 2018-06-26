@@ -3,6 +3,9 @@
 $this->prepend('css',$this->Html->css([
 	'style2.css'
 ]));
+$this->prepend('script',$this->Html->script([
+	'btn_control.js'
+]));
 //BootstrapをCDNから取得
 $this->prepend('css',$this->Html->css([
 	'//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
