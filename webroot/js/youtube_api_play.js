@@ -87,8 +87,12 @@ function getVideoInfo(videoId)
  		$('#movie_title').html(title);
 		$('.description').html(data.items[0].snippet.description);
 	});
-	search_related(videoId);
-	
+	if($('#main_box').hasClass('search')){
+	    search_related(videoId);
+	}else{
+		$('#main_box').show();
+		$('#loading').fadeOut();
+	}
 };
 function search_related(videoId) {
 	gapi.client.setApiKey(apiKey);
@@ -106,7 +110,7 @@ function search_related(videoId) {
 	request.execute(function(data){
 		console.log(data);
 		$('#related').text('');
-		$('#related').append('<table>');
+		$('#related').append('<table class="table table-striped" cellpadding="0" cellspacing="0">');
 		for(var i in data.items){
 			if(data.items[i].id.videoId && 
 				data.items[i].id.kind　==　"youtube#video"){
@@ -142,7 +146,6 @@ function search_related(videoId) {
 // コメントをAjaxでとってくる
 function getComments(){
 	console.log(videoId);
-	if(login_user_id==null){
 		$.ajax({
 			url:"/cake3youtube/comments/commentsajax",
 			type: "POST",
@@ -153,18 +156,6 @@ function getComments(){
 			success:writeComments,
 			error:adminAddVideoError
 		});
-	}else{
-		$.ajax({
-			url:"/cake3youtube/admin/comments/commentsajax",
-			type: "POST",
-			data: {
-				'v_code' : videoId,
-			},
-			dataType:"json",
-			success:writeComments,
-			error:adminAddVideoError
-		});
-	}
 }
 // とってきたら書き込む
 function writeComments(data){

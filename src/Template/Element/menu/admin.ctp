@@ -3,7 +3,7 @@
 		<div class="navbar-header">
 			<?=$this->Html->link("DogSearch",
 ['controller'=>'playlists','action'=>'index'],["class"=>"navbar-brand","id"=>"header"]); ?>
-<img src="img/nikukyu.png" >
+<?= $this->Html->image('nikukyu.png') ?>
 		</div>
 		<?=$this->Form->create("Videos",
 ['type'=>'get','url'=>['controller'=>'Videos','action'=>'result'],'class'=>"navbar-form navbar-left"]); ?>
