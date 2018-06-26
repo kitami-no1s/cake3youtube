@@ -93,7 +93,19 @@ function getVideoInfo(videoId)
 	}else{
 		$('#main_box').show();
 		$('#loading').fadeOut();
-	}
+		/*$('.movie_box').on('click', function() {
+			var cur_tr = $(this)[0];
+		    changeHighlight(cur_tr.rowIndex);
+		});
+		function changeHighlight(current){
+			$('.movie_box').each(function(){
+				if ( $(this).hasClass("highlight") ){
+					$(this).removeClass("highlight");
+				}
+				$(this).eq(current).addClass('highlight');
+			});
+			*/
+		}
 };
 function search_related(videoId) {
 	gapi.client.setApiKey(apiKey);
