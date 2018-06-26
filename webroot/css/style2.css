@@ -151,4 +151,6 @@ text-align: center;
 #border{
 	border-image-source: url("img/yashi.png");
 }
-
+.highlight{
+	background-color: red;
+}
