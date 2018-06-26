@@ -80,6 +80,9 @@ class MylistsController extends AppController {
 			] );
 		}
 		$mylist_delete->delete ( $entity );
+		$mylist_delete->PlaylistVideos->deleteAll([
+					'playlist_id' => $playlist_id
+		]);
 		$this->Flash->success ( __ ( 'プレイリストを削除しました' ) );
 		return $this->redirect ( [ 
 				'action' => 'index' 

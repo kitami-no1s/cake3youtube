@@ -12,7 +12,7 @@
 <?= $this->Form->create('Mylists',['url'=>['action'=>'delete']]) ?>
 <?= $this->Form->hidden('playlist_id',['default'=>$playlist_title->id]) ?>
 <?php foreach($playlist_videos as $playlist_video): ?>
-	<tr id="<?= $playlist_video->id ?>">
+	<tr id="<?= $playlist_video->id ?>" class="select">
 		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
 		<td><?= h($playlist_video->title) ?>
 		</td>
