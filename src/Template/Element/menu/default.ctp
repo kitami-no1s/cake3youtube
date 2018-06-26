@@ -10,8 +10,8 @@
 		</div>
 		<?=$this->Form->button('検索',['type'=>'submit','id'=>'search_btn','class'=>'btn btn-info']); ?>
 		<?=$this->Form->end(); ?>
-
 		<div>
+
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<?= $this->Html->link("ログイン","/users/login"); ?>
