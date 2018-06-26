@@ -120,6 +120,9 @@ body {
 	opacity: 0.5;
 	z-index: 9999;
 }
+#playlists{
+	width:1200px;
+}
 #indexplaylist{
     padding: 0.2em 0.5em;
     margin: 2em 0;
@@ -143,6 +146,4 @@ text-align: center;
 #border{
 	border-image-source: url("img/yashi.png");
 }
-#main_box{
-	overflow: hidden;
-}
+
