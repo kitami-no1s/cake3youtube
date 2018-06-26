@@ -33,7 +33,7 @@ function search(keyword) {
 	request.execute(function(data){
 		console.log(data);
 		$('#result').text('');
-		$('#result').append('<table>');
+		$('#result').append('<table class="table table-striped" cellpadding="0" cellspacing="0">');
 		for(var i in data.items){
 			if(data.items[i].id.videoId && 
 				data.items[i].id.kind=="youtube#video"){
