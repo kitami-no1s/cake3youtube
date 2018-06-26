@@ -15,8 +15,7 @@
 			<?=$this->Form->create("Videos",
 			['type'=>'get','url'=>['controller'=>'Videos','action'=>'result'],'class'=>"navbar-form navbar-left"]); ?>
 		  <div class="form-group">
-			<?=$this->Form->input('keyword',['label'=>false,'class'=>"form-control"
-			value="<?php if( $keyword ) echo $keyword; ?>"]); ?>
+			<?=$this->Form->input('keyword',['label'=>false,'class'=>"form-control"]); ?>
 		  </div>
 			<?=$this->Form->button('検索',['type'=>'submit','id'=>'search_btn','class'=>'btn btn-info','disabled'=>false]); ?>
 			<?=$this->Form->end(); ?>
