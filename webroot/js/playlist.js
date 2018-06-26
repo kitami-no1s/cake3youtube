@@ -43,6 +43,7 @@ function startPlayer(){
 			'onReady':onPlayerReady
 		}
 	});
+	$('#main_box').show();
 }
 // プレイヤが準備できたら呼び出される
 function onPlayerReady(event){
@@ -51,6 +52,7 @@ function onPlayerReady(event){
 
 // 画面がロードされたら作動
 $(function() {
+	$('#main_box').hide();
 	$(window).on('load', getVideoId);
 	$('#addVideoButton').on('click',addToMyplaylist);
 	$('#addCommentButton').on('click',addComment);
@@ -60,12 +62,14 @@ $(function() {
 
 // GETで持ってきたvideoIdを取得
 function getVideoId(event){
+	$('#loading').fadeIn();
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	console.log(videoId);
 	getVideoInfo(videoId);
 	getComments();
 	startPlayer();
+	
 }
 
 function getVideoInfo(videoId)
@@ -88,6 +92,9 @@ function getVideoInfo(videoId)
  		$('#movie_title').html(title);
 		$('.description').html(data.items[0].snippet.description);
 	});
+	
+	$('#loading').fadeOut();
+	
 };
 
 // コメントをAjaxでとってくる

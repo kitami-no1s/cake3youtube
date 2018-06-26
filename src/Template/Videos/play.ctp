@@ -1,4 +1,5 @@
 <?php $this->prepend('script',$this->Html->script('youtube_api_play.js')); ?>
+<div id="loading"></div>
 <div id="main_box" class="clearfix">
 	<div id="contents">
 		<div id="movie_title"></div>
