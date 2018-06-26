@@ -5,11 +5,11 @@
 	</div>
 	
 	
-	<table border="1" class="index">
+	<table border="1" id="indexplaylist">
 	<tr>
-		<th scope="col"><?= $this->Paginator->sort('プレイリスト名') ?></th>
-		<th scope="col"><?= $this->Paginator->sort('最終更新日') ?></th>
-		<th scope="col"><?= $this->Paginator->sort('Actioin') ?></th>
+		<th>プレイリスト名</th>
+		<th>最終更新日</th>
+		<th>Actioin</th>
 	</tr>
 	<?php foreach($mylists as $mylist): ?>
 	<tr>

@@ -2,7 +2,7 @@
 <div id=result></div>
 <table>
 <?php foreach($playlist_videos as $playlist_video): ?>
-	<tr>
+	<tr id=border>
 		<td><img src="<?= h($playlist_video->thum) ?>"/></td>
 		<td><?= $this->Html->link($playlist_video->title,[
 								"controller"=>"playlists","action" => "play",

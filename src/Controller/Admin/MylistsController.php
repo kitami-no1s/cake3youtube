@@ -45,6 +45,7 @@ class MylistsController extends AppController {
 		$login_user_id = $this->MyAuth->user ( "id" );
 		try {
 			$playlist_title = $mylist_edit->get ( $playlist_id );
+			//マイプレイリストかどうかのチェック
 			if ($playlist_title->user_id !== $login_user_id) {
 				$this->Flash->error ( __ ( 'マイプレイリストのみが編集可能です' ) );
 				return $this->redirect ( [ 
@@ -71,6 +72,7 @@ class MylistsController extends AppController {
 				'user_id' => $login_user_id,
 				'id' => $playlist_id 
 		] )->first ();
+		//マイプレイリストかどうかのチェック
 		if (empty ( $entity )) {
 			$this->Flash->error ( __ ( 'マイプレイリストのみが削除可能です' ) );
 			return $this->redirect ( [ 
@@ -99,6 +101,7 @@ class MylistsController extends AppController {
 				}
 			}
 		}
+		$this->Flash->success ( __ ( '曲を削除しました' ) );
 		return $this->redirect ( [ 
 				'action' => 'edit',
 				$this->request->data ['playlist_id'] 
