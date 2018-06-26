@@ -87,8 +87,12 @@ function getVideoInfo(videoId)
  		$('#movie_title').html(title);
 		$('.description').html(data.items[0].snippet.description);
 	});
-	search_related(videoId);
-	
+	if($('#main_box').hasClass('search')){
+	    search_related(videoId);
+	}else{
+		$('#main_box').show();
+		$('#loading').fadeOut();
+	}
 };
 function search_related(videoId) {
 	gapi.client.setApiKey(apiKey);
@@ -106,7 +110,7 @@ function search_related(videoId) {
 	request.execute(function(data){
 		console.log(data);
 		$('#related').text('');
-		$('#related').append('<table>');
+		$('#related').append('<table class="table table-striped" cellpadding="0" cellspacing="0">');
 		for(var i in data.items){
 			if(data.items[i].id.videoId && 
 				data.items[i].id.kind　==　"youtube#video"){
