@@ -13,7 +13,10 @@ body {
 .main .page-header {
 	margin-top: 0;
 }
-
+#main_box{
+		margin: 0 auto;
+		width: 1200px;
+		}
 #contents {
 	width: 640px;
 	float: left;
