@@ -20,7 +20,8 @@ class VideosController extends AppController
 		$login_user_id = $this->MyAuth->user("id");
 		$myplaylists = $playlists->find('list')->where(['user_id'=>$login_user_id]);
 		$video_id = $this->request->query['videoId'];
-		
-		$this->set(compact('video_id','login_user_id','myplaylists'));
+		$keyword=$this->request->query['keyword'];
+
+		$this->set(compact('video_id','login_user_id','myplaylists','keyword'));
 	}
 }
