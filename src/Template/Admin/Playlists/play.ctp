@@ -10,7 +10,7 @@
 			<?= $this->Form->create("Comments",[
 				"id"=>"addComment"
 			])	?>
-			<?= $this->Form->input("body") ?>
+			<?= $this->Form->input("body",["label"=>"コメント"]) ?>
 			<?= $this->Form->button("投稿",["type"=>"button","id"=>"addCommentButton"]); ?>
 			<?= $this->Form->end(); ?>
 		</div>
