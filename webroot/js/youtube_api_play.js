@@ -60,8 +60,10 @@ $(function() {
 	
 });
 
+var keyword;
 // GETで持ってきたvideoIdを取得
 function getVideoId(event){
+	keyword = $('#keyword').val();
 	videoId = $('#player').data("video_id");
 	login_user_id = $('#player').data("login_user_id");
 	getVideoInfo(videoId);
@@ -137,7 +139,7 @@ function search_related(videoId) {
 						'<img src="' + data.items[i].snippet.thumbnails.default.url + '" width="200px"/>' +
 						'</td>' + '<td class="details">' + 
 						'<a href="http://localhost/cake3youtube/videos/play?videoId=' +
-						data.items[i].id.videoId + '">'+ data.items[i].snippet.title + '</a><br/>' +
+						data.items[i].id.videoId +  '&keyword=' + keyword + '">'+ data.items[i].snippet.title + '</a><br/>' +
 						'<span class="description"></span>' +
 						'</td>'+
 						'</tr>');
@@ -148,7 +150,7 @@ function search_related(videoId) {
 						'<img src="' + data.items[i].snippet.thumbnails.default.url + '" width="200px"/>' +
 						'</td>' + '<td class="details">' + 
 						'<a href="http://localhost/cake3youtube/admin/videos/play?videoId=' +
-						data.items[i].id.videoId + '">'+ data.items[i].snippet.title + '</a><br/>' +
+						data.items[i].id.videoId + '&keyword=' + keyword +'">'+ data.items[i].snippet.title + '</a><br/>' +
 						'<span class="description"></span>' +
 						'</td>'+
 						'</tr>');
