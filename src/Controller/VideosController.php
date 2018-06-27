@@ -7,7 +7,6 @@ class VideosController extends AppController
 	
 	public function result()
 	{
-
 		$keyword=$this->request->query['keyword'];
 		
 		$this->set('keyword',$keyword);
