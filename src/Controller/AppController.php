@@ -60,6 +60,11 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
+    	if(isset($this->request->query['keyword'])){
+    		$keyword = $this->request->query['keyword'];
+    		$this->set("keyword",$keyword);
+    			
+    	}
     	$this->set("menu","default");
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])

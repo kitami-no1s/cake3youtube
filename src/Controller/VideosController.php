@@ -16,6 +16,7 @@ class VideosController extends AppController
 	public function play()
 	{
 		$video_id = $this->request->query['videoId'];
+
 		
 		$this->set('video_id',$video_id);
 	}
