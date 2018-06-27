@@ -2,6 +2,9 @@
 <div id="loading"></div>
 <div id="main_box" class="clearfix search">
 	<div id="contents">
+		<div class="newedit">
+		<p><?= $this->Html->link("プレイリスト新規作成",["controller"=>"mylists","action" => "add"]) ?></p>
+		</div>
 		<?php
 		echo $this->Form->create("PlaylistVideos",[
 			"id"=>"addVideo"

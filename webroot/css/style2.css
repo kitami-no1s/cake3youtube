@@ -12,7 +12,11 @@ body {
 
 .main .page-header {
 	margin-top: 0;
+	font-family: Comic Sans MS;
+	
 }
+
+
 #main_box{
 		margin: 0 auto;
 		width: 1200px;
@@ -144,8 +148,8 @@ body {
 
 .newedit {
 background: linear-gradient(transparent 60%, #FAE438 60%);
-font-size: 20px;
-width: 150px;
+font-size: 15px;
+width: 180px;
 text-align: center;
 }
 #border{
