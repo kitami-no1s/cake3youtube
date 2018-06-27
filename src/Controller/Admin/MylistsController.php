@@ -92,8 +92,17 @@ class MylistsController extends AppController {
 	}
 	public function delete() {
 		$mylist_delete = TableRegistry::get ( 'Playlists' );
+		if(!isset($this->request->data ['v_codes'])){
+			$this->Flash->success ( __ ( '曲が存在しません' ) );
+			return $this->redirect ( [
+					'action' => 'edit',
+					$this->request->data ['playlist_id']
+			] );
+		}
+		
 		// checkの入ったv_codeの配列
 		$v_codes = $this->request->data ['v_codes'];
+		
 		$playlist_id = $this->request->data ['playlist_id'];
 		if ($this->request->is ( 'post' )) {
 			if (isset ( $this->request->data ["delete"] )) {
