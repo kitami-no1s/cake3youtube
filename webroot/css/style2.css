@@ -12,7 +12,11 @@ body {
 
 .main .page-header {
 	margin-top: 0;
+	font-family: Comic Sans MS;
+	
 }
+
+
 #main_box{
 		margin: 0 auto;
 		width: 1200px;
