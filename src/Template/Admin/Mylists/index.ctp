@@ -14,7 +14,7 @@
 	<?php foreach($mylists as $mylist): ?>
 	<tr>
 		<td><?= h($mylist->title) ?></td>
-		<td><?= h($mylist->modified) ?></td>
+		<td><?= h($mylist->modified->format("Y年m月d日H時i分")) ?></td>
 		<td><?= $this->Html->link("編集",["action" => "edit",$mylist->id]) ?>
 			<?= $this->Html->link("削除",['action'=>'deletemylist',$mylist->id]) ?>
 		</td>
