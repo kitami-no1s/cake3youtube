@@ -11,7 +11,7 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="nav_target">
           <?=$this->Form->create("Videos",
-		  ['type'=>'get','url'=>['controller'=>'Videos','action'=>'result'],'class'=>"navbar-form navbar-left"]); ?>
+		  ['type'=>'get','url'=>['controller'=>'Videos','action'=>'result'],'class'=>"navbar-form navbar-left",'id'=>'search']); ?>
 	      <div class="form-group">
 		    <?=$this->Form->input('keyword',['label'=>false,'class'=>"form-control"]); ?>
 	      </div>

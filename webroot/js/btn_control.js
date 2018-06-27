@@ -1,4 +1,3 @@
-var keyword;
 $(function(){
 	$('#search_btn').on('click',function(){
 			$(this).attr('disabled',true);
@@ -7,8 +6,7 @@ $(function(){
 				$(this).attr('disabled',false);
 				return false;
 			}else{
-				$('form').submit();
-				keyword = $('form [name=keyword]').val();
+				$('#search').submit();
 				
 			}
 	});
