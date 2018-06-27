@@ -23,6 +23,11 @@ class AppController extends Controller
 			$this->set("auth",$user);
 			$menu = "admin";
 		}
+		if(isset($this->request->query['keyword'])){
+			$keyword = $this->request->query['keyword'];
+			$this->set("keyword",$keyword);
+			
+		}
 		$this->set("menu",$menu);
 	}
 	public function isAuthorized($user = null)
